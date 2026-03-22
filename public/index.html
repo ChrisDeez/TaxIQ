@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1a2b5e" />
     <meta name="description" content="TaxIQ - AI Λογιστικός Βοηθός για Φορολογικά, Ασφαλιστικά και Εργατικά Θέματα στην Ελλάδα" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TaxIQ" />
+    <link rel="manifest" href="/manifest.json" />
     <title>TaxIQ - AI Λογιστικός Βοηθός</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
   </body>
 </html>
+
