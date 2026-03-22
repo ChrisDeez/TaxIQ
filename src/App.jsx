@@ -652,15 +652,9 @@ export default function TaxIQ() {
 
             {/* Testimonials */}
             <div style={{ maxWidth: 600, margin: "32px auto 0", textAlign: "center" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+              <div style={{ textAlign: "center", marginBottom: 4 }}>
                 <h3 style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 800, margin: 0 }}>Τι λένε οι χρήστες μας</h3>
-                <div style={{ display: "flex", gap: 8 }}>
-                  {user && (
-                    <button onClick={() => setShowReviewForm(true)}
-                      style={{ background: orange, border: "none", borderRadius: 20, padding: "6px 12px", color: "#fff", fontSize: "0.72rem", fontWeight: 700, cursor: "pointer" }}>
-                      + Αξιολόγηση
-                    </button>
-                  )}
+                <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 8 }}>
                   {user?.email === ADMIN_EMAIL && (
                     <button onClick={() => { setShowAdminPanel(true); fetchPendingReviews(); }}
                       style={{ background: "#1a2b5e", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 20, padding: "6px 12px", color: "#fff", fontSize: "0.72rem", fontWeight: 700, cursor: "pointer" }}>
@@ -669,12 +663,7 @@ export default function TaxIQ() {
                   )}
                 </div>
               </div>
-              <p style={{ color: "#64748b", fontSize: "0.78rem", marginBottom: 20 }}>Χιλιάδες εργαζόμενοι, επαγγελματίες και επιχειρήσεις εμπιστεύονται το TaxIQ</p>
-              {!user && (
-                <div style={{ background: "rgba(232,98,42,0.1)", border: "1px solid rgba(232,98,42,0.3)", borderRadius: 12, padding: "10px 16px", marginBottom: 16, fontSize: "0.78rem", color: "#fca5a5" }}>
-                  <button onClick={() => setShowAuthModal(true)} style={{ background: "none", border: "none", color: orange, fontWeight: 700, cursor: "pointer", fontSize: "0.78rem" }}>Συνδεθείτε</button> για να αφήσετε αξιολόγηση
-                </div>
-              )}
+              <p style={{ color: "#64748b", fontSize: "0.78rem", marginBottom: 20, textAlign: "center" }}>Χιλιάδες εργαζόμενοι, επαγγελματίες και επιχειρήσεις εμπιστεύονται το TaxIQ</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {randomReviews.map((review, i) => (
                   <div key={i} style={{ background: "#ffffff", border: "1px solid rgba(26,43,94,0.12)", borderRadius: 16, padding: "16px 18px", textAlign: "left", boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
@@ -842,7 +831,22 @@ export default function TaxIQ() {
               </div>
             </div>
             {msg.role === "assistant" && i === messages.length - 1 && !loading && (
-              <div style={{ display: "flex", justifyContent: "center", marginTop: 16, marginBottom: 16 }}>
+              <div style={{ marginTop: 12, marginBottom: 8 }}>
+                {user ? (
+                  <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(91,184,196,0.2)", borderRadius: 12, padding: "12px 16px", textAlign: "center", cursor: "pointer" }}
+                    onClick={() => setShowReviewForm(true)}>
+                    <span style={{ fontSize: "0.75rem", color: teal }}>⭐ Αφήστε μια αξιολόγηση για την απάντηση</span>
+                  </div>
+                ) : (
+                  <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(91,184,196,0.2)", borderRadius: 12, padding: "12px 16px", textAlign: "center", cursor: "pointer" }}
+                    onClick={() => setShowAuthModal(true)}>
+                    <span style={{ fontSize: "0.75rem", color: teal }}>⭐ <span style={{ color: orange, fontWeight: 700 }}>Συνδεθείτε</span> για να αφήσετε αξιολόγηση</span>
+                  </div>
+                )}
+              </div>
+            )}
+            {msg.role === "assistant" && i === messages.length - 1 && !loading && (
+              <div style={{ display: "flex", justifyContent: "center", marginTop: 8, marginBottom: 16 }}>
                 <button
                   onClick={() => { setMessages([]); setInput(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                   style={{ display: "flex", alignItems: "center", gap: 8, background: "#E8622A", border: "none", borderRadius: 50, padding: "11px 36px", color: "#fff", fontSize: "0.88rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 700, boxShadow: "0 4px 15px rgba(232,98,42,0.4)", transition: "all 0.2s" }}
