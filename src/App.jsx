@@ -412,6 +412,13 @@ export default function TaxIQ() {
       let currentMessages = newMessages.map((m) => ({ role: m.role, content: m.content }));
       let data = await callAPI(currentMessages);
 
+      // Retry if rate limited
+      if (data.error && (data.error.includes('429') || data.error.includes('quota') || data.error.includes('rate'))) {
+        setSearchingWeb(false);
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        data = await callAPI(currentMessages);
+      }
+
       setSearchingWeb(false);
 
       if (data.error) throw new Error(data.error);
