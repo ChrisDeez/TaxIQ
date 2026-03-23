@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: system }] },
+          systemInstruction: { parts: [{ text: system || "Είσαι βοηθός." }] },
           contents,
           tools: [{ googleSearch: {} }],
           generationConfig: { maxOutputTokens: 4096 }
