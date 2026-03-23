@@ -205,6 +205,88 @@ const ReliabilityBadge = ({ reliability }) => {
   );
 };
 
+const PricingPage = ({ onClose, user, onSignup }) => {
+  const navy = "#1a2b5e";
+  const orange = "#E8622A";
+  const teal = "#5bb8c4";
+  const features = [
+    "Απεριόριστες ερωτήσεις",
+    "Απαντήσεις με AI & Web Search",
+    "Real-Time ενημέρωση νομοθεσίας",
+    "Αναφορές σε νόμους & πηγές",
+    "Δείκτης αξιοπιστίας απάντησης",
+    "Υποστήριξη μέσω email",
+  ];
+  return (
+    <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 16, backdropFilter: "blur(4px)" }}>
+      <div style={{ background: "#fff", borderRadius: 24, width: "100%", maxWidth: 420, boxShadow: "0 24px 64px rgba(0,0,0,0.35)", position: "relative", overflow: "hidden", maxHeight: "90vh", overflowY: "auto" }}>
+        {/* Top accent bar */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: `linear-gradient(90deg, ${orange}, ${teal})` }} />
+
+        {/* Header row */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "24px 24px 0" }}>
+          <div>
+            <div style={{ fontSize: "0.6rem", fontWeight: 700, color: teal, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 4 }}>Τιμολόγηση</div>
+            <h2 style={{ color: navy, fontSize: "1.25rem", fontWeight: 900, margin: 0 }}>Απλό & Ξεκάθαρο</h2>
+          </div>
+          <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "1.4rem", cursor: "pointer", color: "#94a3b8", lineHeight: 1 }}>✕</button>
+        </div>
+
+        <div style={{ padding: "20px 24px 28px" }}>
+          {/* Icon + plan name */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+            <div style={{ width: 52, height: 52, borderRadius: 14, background: "rgba(232,98,42,0.08)", border: "1.5px solid rgba(232,98,42,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l2.4 4.9 5.6.8-4 3.9.9 5.4L12 14.5l-4.9 2.5.9-5.4L4 7.7l5.6-.8L12 2z" stroke={orange} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(232,98,42,0.1)"/>
+              </svg>
+            </div>
+            <div>
+              <div style={{ fontSize: "1.3rem", fontWeight: 900, color: navy, lineHeight: 1 }}>Free</div>
+              <div style={{ fontSize: "0.78rem", color: "#64748b", marginTop: 3 }}>Ιδανικό για να δοκιμάσετε την υπηρεσία</div>
+            </div>
+            <div style={{ marginLeft: "auto", textAlign: "right" }}>
+              <span style={{ fontSize: "2.2rem", fontWeight: 900, color: navy, lineHeight: 1 }}>€0</span>
+              <div style={{ fontSize: "0.75rem", color: "#94a3b8" }}>/ μήνα</div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{ height: 1, background: "rgba(26,43,94,0.08)", marginBottom: 18 }} />
+
+          {/* Features */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 11, marginBottom: 24 }}>
+            {features.map((f, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(91,184,196,0.1)", border: `1.5px solid ${teal}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke={teal} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <span style={{ color: "#1e293b", fontSize: "0.85rem", fontWeight: 500 }}>{f}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <button
+            onClick={() => user ? onClose() : onSignup()}
+            style={{ width: "100%", padding: "14px", background: user ? "rgba(26,43,94,0.06)" : `linear-gradient(135deg, ${orange}, #c94d1a)`, border: user ? "1.5px solid rgba(26,43,94,0.15)" : "none", borderRadius: 14, color: user ? navy : "#fff", fontSize: "0.97rem", fontWeight: 700, cursor: user ? "default" : "pointer", fontFamily: "inherit", boxShadow: user ? "none" : "0 4px 18px rgba(232,98,42,0.38)", transition: "all 0.2s" }}
+            onMouseEnter={e => { if (!user) e.currentTarget.style.background = "#c94d1a"; }}
+            onMouseLeave={e => { if (!user) e.currentTarget.style.background = `linear-gradient(135deg, ${orange}, #c94d1a)`; }}
+          >
+            {user ? "✓ Είστε ήδη συνδεδεμένοι" : "🎉 Ξεκινήστε Δωρεάν"}
+          </button>
+          {!user && <p style={{ fontSize: "0.7rem", color: "#94a3b8", textAlign: "center", marginTop: 8, marginBottom: 0 }}>Δεν απαιτείται πιστωτική κάρτα</p>}
+
+          {/* Coming soon note */}
+          <div style={{ marginTop: 16, background: "rgba(91,184,196,0.06)", border: "1px solid rgba(91,184,196,0.2)", borderRadius: 10, padding: "12px 14px", textAlign: "center" }}>
+            <span style={{ fontSize: "0.68rem", fontWeight: 700, color: teal, letterSpacing: "0.1em", textTransform: "uppercase" }}>Σύντομα · </span>
+            <span style={{ fontSize: "0.72rem", color: "#64748b" }}>Προηγμένα πλάνα για επιχειρήσεις & λογιστές</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const AuthModal = ({ onClose, onAuthSuccess }) => {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
@@ -297,6 +379,7 @@ export default function TaxIQ() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showRegWall, setShowRegWall] = useState(false);
   const [showFeatures, setShowFeatures] = useState(false);
+  const [showPricingPage, setShowPricingPage] = useState(false);
   const [user, setUser] = useState(null);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
@@ -352,20 +435,40 @@ export default function TaxIQ() {
     fetchPendingReviews();
   };
 
-  // Fetch trending questions dynamically on load
+  // Trending questions: cache TTL 4h, fetch 8 from web search, show 4 random
+  const TRENDING_CACHE_KEY = "taxiq_trending_questions";
+  const TRENDING_CACHE_TTL = 4 * 60 * 60 * 1000;
+
   useEffect(() => {
     const fetchTrendingQuestions = async () => {
+      // 1. Try cache first
       try {
+        const raw = localStorage.getItem(TRENDING_CACHE_KEY);
+        if (raw) {
+          const { questions, timestamp } = JSON.parse(raw);
+          if (
+            Date.now() - timestamp < TRENDING_CACHE_TTL &&
+            Array.isArray(questions) && questions.length >= 4
+          ) {
+            const shuffled = [...questions].sort(() => Math.random() - 0.5);
+            setRandomQuestions(shuffled.slice(0, 4));
+            return;
+          }
+        }
+      } catch (e) {}
+
+      // 2. Cache stale or missing — fetch from API with web search
+      try {
+        const now = new Date();
+        const month = now.toLocaleDateString("el-GR", { month: "long", year: "numeric" });
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 800,
-            tools: [{ type: "web_search_20250305", name: "web_search" }],
+            system: "Απάντα ΜΟΝΟ στα ελληνικά. Επέστρεψε ΜΟΝΟ ένα έγκυρο JSON array χωρίς markdown, backticks ή εξηγήσεις.",
             messages: [{
               role: "user",
-              content: `Ψάξε στο ελληνικό διαδίκτυο ποια είναι τα 4 πιο συχνά ερωτήματα που κάνουν οι Έλληνες αυτή την εποχή σχετικά με φορολογικά, λογιστικά, ασφαλιστικά ή εργατικά θέματα. Επέστρεψε ΜΟΝΟ ένα JSON array με 4 ερωτήσεις στα ελληνικά, χωρίς καμία άλλη εξήγηση. Παράδειγμα: ["Ερώτηση 1;", "Ερώτηση 2;", "Ερώτηση 3;", "Ερώτηση 4;"]`
+              content: `Κάνε αναζήτηση στο ελληνικό διαδίκτυο για το ${month} και βρες τα 8 πιο επίκαιρα και συχνά ερωτήματα που κάνουν οι Έλληνες σχετικά με φορολογικά, λογιστικά, ασφαλιστικά ή εργατικά θέματα. Λάβε υπόψη φορολογικές προθεσμίες, αλλαγές νόμων, ανακοινώσεις ΑΑΔΕ/ΕΦΚΑ/ΕΡΓΑΝΗ. Επέστρεψε ΜΟΝΟ ένα JSON array με 8 ερωτήσεις στα ελληνικά, σε μορφή: ["Ερώτηση 1;", ..., "Ερώτηση 8;"]`
             }]
           })
         });
@@ -374,12 +477,19 @@ export default function TaxIQ() {
         const match = text.match(/\[[\s\S]*?\]/);
         if (match) {
           const questions = JSON.parse(match[0]);
-          if (Array.isArray(questions) && questions.length === 4) {
-            setRandomQuestions(questions);
+          if (Array.isArray(questions) && questions.length >= 4) {
+            // Save to cache
+            localStorage.setItem(TRENDING_CACHE_KEY, JSON.stringify({
+              questions,
+              timestamp: Date.now()
+            }));
+            // Show 4 random from fetched
+            const shuffled = [...questions].sort(() => Math.random() - 0.5);
+            setRandomQuestions(shuffled.slice(0, 4));
           }
         }
       } catch (e) {
-        // fallback to static questions already set
+        // Fallback to static questions already set
       }
     };
     fetchTrendingQuestions();
@@ -477,18 +587,39 @@ export default function TaxIQ() {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
   };
 
+  // Renders inline bold (**text**), links ([label](url)), and block-level formatting
+  const renderInline = (text) => {
+    const parts = [];
+    // Split on **bold** and [label](url) patterns
+    const regex = /\*\*(.+?)\*\*|\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g;
+    let last = 0, match;
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > last) parts.push(text.slice(last, match.index));
+      if (match[1] !== undefined) {
+        parts.push(<strong key={match.index} style={{ color: "#a8dde4", fontWeight: 700 }}>{match[1]}</strong>);
+      } else {
+        parts.push(<a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer" style={{ color: "#5bb8c4", textDecoration: "underline", wordBreak: "break-all" }}>{match[2]}</a>);
+      }
+      last = regex.lastIndex;
+    }
+    if (last < text.length) parts.push(text.slice(last));
+    return parts.length > 0 ? parts : text;
+  };
+
   const formatText = (text) =>
     text.split("\n").map((line, i) => {
-      if (line.startsWith("## ")) return <h3 key={i} style={{ fontSize: "1rem", fontWeight: 700, color: "#5bb8c4", margin: "12px 0 4px" }}>{line.slice(3)}</h3>;
-      if (line.startsWith("**") && line.endsWith("**")) return <strong key={i} style={{ display: "block", color: "#a8dde4" }}>{line.slice(2, -2)}</strong>;
+      if (line.startsWith("## ")) return <h3 key={i} style={{ fontSize: "1rem", fontWeight: 700, color: "#5bb8c4", margin: "12px 0 4px" }}>{renderInline(line.slice(3))}</h3>;
+      if (line.startsWith("### ")) return <h4 key={i} style={{ fontSize: "0.9rem", fontWeight: 700, color: "#a8dde4", margin: "10px 0 3px" }}>{renderInline(line.slice(4))}</h4>;
+      // Full-line bold (standalone **text**)
+      if (/^\*\*(.+)\*\*$/.test(line.trim())) return <strong key={i} style={{ display: "block", color: "#a8dde4", marginTop: 6 }}>{line.trim().slice(2, -2)}</strong>;
       if (line.startsWith("- ") || line.startsWith("• ")) return (
         <div key={i} style={{ display: "flex", gap: 8, marginBottom: 3 }}>
           <span style={{ color: "#e8622a", fontWeight: 700, flexShrink: 0 }}>›</span>
-          <span>{line.slice(2)}</span>
+          <span>{renderInline(line.slice(2))}</span>
         </div>
       );
       if (line.trim() === "") return <br key={i} />;
-      return <p key={i} style={{ margin: "3px 0" }}>{line}</p>;
+      return <p key={i} style={{ margin: "3px 0" }}>{renderInline(line)}</p>;
     });
 
   // Color palette
@@ -520,7 +651,7 @@ export default function TaxIQ() {
             <span style={{ fontSize: "0.5rem", color: "#1a2b5e", fontWeight: 500 }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
-            <button onClick={() => supabase.auth.signOut()}
+            <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
               style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               Αποσύνδεση
@@ -536,6 +667,7 @@ export default function TaxIQ() {
       </div>
 
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); }} />}
+      {showPricingPage && <PricingPage onClose={() => setShowPricingPage(false)} user={user} onSignup={() => { setShowPricingPage(false); setShowAuthModal(true); }} />}
 
       {/* Features Modal */}
       {showFeatures && (
@@ -811,7 +943,7 @@ export default function TaxIQ() {
                   <h4 style={{ color: "#fff", fontSize: "0.85rem", fontWeight: 700, marginBottom: 14, letterSpacing: "0.05em" }}>Προϊόν</h4>
                   {["Χαρακτηριστικά", "Τιμές", "Συχνές Ερωτήσεις", "Οδηγός Χρήσης"].map(item => (
                     <div key={item} style={{ marginBottom: 8 }}>
-                      <a href="#" onClick={e => { e.preventDefault(); if(item === "Χαρακτηριστικά") setShowFeatures(true); }}
+                      <a href="#" onClick={e => { e.preventDefault(); if(item === "Χαρακτηριστικά") setShowFeatures(true); if(item === "Τιμές") setShowPricingPage(true); }}
                         style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.78rem", textDecoration: "none" }}
                         onMouseEnter={e => e.target.style.color = "#E8622A"}
                         onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.55)"}>{item}</a>
