@@ -390,14 +390,9 @@ export default function TaxIQ() {
     const currentYear = now.getFullYear();
     return fetch("/api/chat", {
       method: "POST",
-      headers: { 
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 4096,
-        system: SYSTEM_PROMPT + `\n\nΣΗΜΕΡΙΝΗ ΗΜΕΡΟΜΗΝΙΑ: ${currentDate}. ΤΡΕΧΟΝ ΕΤΟΣ: ${currentYear}. Όταν ο χρήστης λέει "φέτος", "τώρα", "τρέχον έτος" εννοεί το ${currentYear}. Χρησιμοποίησε ΠΑΝΤΑ το ${currentYear} στις αναζητήσεις σου.`,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
+        system: SYSTEM_PROMPT + `\n\nΣΗΜΕΡΙΝΗ ΗΜΕΡΟΜΗΝΙΑ: ${currentDate}. ΤΡΕΧΟΝ ΕΤΟΣ: ${currentYear}.`,
         messages: msgs,
       }),
     }).then((r) => r.json());
@@ -415,26 +410,15 @@ export default function TaxIQ() {
 
     try {
       let currentMessages = newMessages.map((m) => ({ role: m.role, content: m.content }));
-      let didSearch = false;
-      let searchCount = 0;
       let data = await callAPI(currentMessages);
 
-      while (data.stop_reason === "tool_use" && searchCount < 2) {
-        setSearchingWeb(true);
-        didSearch = true;
-        searchCount++;
-        const toolBlock = data.content.find((b) => b.type === "tool_use");
-        currentMessages = [
-          ...currentMessages,
-          { role: "assistant", content: data.content },
-          { role: "user", content: [{ type: "tool_result", tool_use_id: toolBlock.id, content: "Αναζήτηση ολοκληρώθηκε." }] },
-        ];
-        data = await callAPI(currentMessages);
-      }
-
       setSearchingWeb(false);
-      const finalText = data.content.filter((b) => b.type === "text").map((b) => b.text).join("");
-      
+
+      if (data.error) throw new Error(data.error);
+
+      const finalText = data.content?.filter((b) => b.type === "text").map((b) => b.text).join("") || "";
+      const didSearch = data.searched || false;
+
       // Extract reliability block
       const reliabilityMatch = finalText.match(/%%RELIABILITY:(.*?)%%/s);
       let reliability = null;
