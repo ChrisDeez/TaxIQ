@@ -423,13 +423,10 @@ export default function TaxIQ() {
     const now = new Date();
     const currentDate = now.toLocaleDateString("el-GR", { day: "numeric", month: "long", year: "numeric" });
     const currentYear = now.getFullYear();
-    return fetch("https://api.anthropic.com/v1/messages", {
+    return fetch("/api/chat", {
       method: "POST",
       headers: { 
-        "Content-Type": "application/json",
-        "x-api-key": process.env.REACT_APP_ANTHROPIC_KEY || "",
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
