@@ -1466,10 +1466,23 @@ export default function TaxIQ() {
     const userText = text || input.trim();
     if (!userText || loading) return;
 
-    // Check free question limit
-    if (!user && freeQuestions >= FREE_LIMIT) {
-      setShowRegWall(true);
-      return;
+    // Check free question limit (server-side by IP)
+    if (!user) {
+      try {
+        const limitRes = await fetch("/api/check-limit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+        const limitData = await limitRes.json();
+        if (!limitData.allowed) {
+          setShowRegWall(true);
+          return;
+        }
+        setFreeQuestions(limitData.count);
+        localStorage.setItem("taxiq_free_q", limitData.count.toString());
+      } catch (e) {
+        // Fail open on network error
+      }
     }
 
     setInput("");
@@ -1477,13 +1490,6 @@ export default function TaxIQ() {
     setMessages(newMessages);
     setLoading(true);
     setSearchingWeb(false);
-
-    // Increment free question counter
-    if (!user) {
-      const newCount = freeQuestions + 1;
-      setFreeQuestions(newCount);
-      localStorage.setItem("taxiq_free_q", newCount.toString());
-    }
 
     try {
       let currentMessages = newMessages.map((m) => ({ role: m.role, content: m.content }));
