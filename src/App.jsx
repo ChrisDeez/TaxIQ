@@ -1371,6 +1371,43 @@ export default function TaxIQ() {
     setShowCookieBanner(false);
   };
 
+  const exportUserData = async () => {
+    if (!user) return;
+    try {
+      // Fetch questions
+      const { data: questions } = await supabase
+        .from("user_questions")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+
+      const exportData = {
+        exported_at: new Date().toISOString(),
+        profile: {
+          id: user.id,
+          email: user.email,
+          full_name: user.user_metadata?.full_name || "",
+          created_at: user.created_at,
+        },
+        questions: (questions || []).map(q => ({
+          date: q.created_at,
+          question: q.question,
+          answer: q.answer,
+        })),
+      };
+
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `taxiq_data_${user.email}_${new Date().toISOString().split("T")[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      alert("Σφάλμα κατά την εξαγωγή δεδομένων.");
+    }
+  };
+
   // Trending questions: cache TTL 4h, fetch 8 from web search, show 4 random
   const TRENDING_CACHE_KEY = "taxiq_trending_questions";
   const TRENDING_CACHE_TTL = 4 * 60 * 60 * 1000;
@@ -1517,6 +1554,15 @@ export default function TaxIQ() {
         try { reliability = JSON.parse(reliabilityMatch[1]); } catch(e) {}
       }
       setMessages([...newMessages, { role: "assistant", content: cleanText, searched: didSearch, reliability }]);
+
+      // Save to user history if logged in
+      if (user) {
+        supabase.from("user_questions").insert({
+          user_id: user.id,
+          question: userText,
+          answer: cleanText,
+        }).catch(() => {});
+      }
     } catch (err) {
       setMessages([...newMessages, { role: "assistant", content: "⚠️ Σφάλμα σύνδεσης. Παρακαλώ δοκιμάστε ξανά.", searched: false }]);
     } finally {
@@ -1593,11 +1639,19 @@ export default function TaxIQ() {
             <span style={{ fontSize: "0.5rem", color: "#1a2b5e", fontWeight: 500 }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
-            <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
-              style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              Αποσύνδεση
-            </button>
+            <div style={{ display: "flex", gap: 6 }}>
+              <button onClick={exportUserData}
+                title="Εξαγωγή δεδομένων μου"
+                style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Τα δεδομένα μου
+              </button>
+              <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
+                style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Αποσύνδεση
+              </button>
+            </div>
           ) : (
             <button onClick={() => setShowAuthModal(true)}
               style={{ display: "flex", alignItems: "center", gap: 4, background: orange, border: "none", borderRadius: 20, padding: "5px 12px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 700, boxShadow: "0 2px 6px rgba(232,98,42,0.4)" }}>
