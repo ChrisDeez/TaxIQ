@@ -522,41 +522,55 @@ const PrivacyModal = ({ onClose }) => {
 
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 16, backdropFilter: "blur(4px)" }} onClick={onClose}>
-      <div style={{ background: "#f8fafc", borderRadius: 24, width: "100%", maxWidth: 580, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 24px 64px rgba(0,0,0,0.35)" }} onClick={e => e.stopPropagation()}>
+      <div style={{ background: "#f8fafc", borderRadius: 24, width: "100%", maxWidth: 600, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 24px 64px rgba(0,0,0,0.35)" }} onClick={e => e.stopPropagation()}>
 
         {/* Header */}
         <div style={{ position: "sticky", top: 0, zIndex: 10, background: "#fff", borderBottom: "1px solid rgba(26,43,94,0.08)", borderRadius: "24px 24px 0 0", padding: "18px 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
             <div style={{ fontSize: "0.6rem", fontWeight: 700, color: teal, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 3 }}>Νομικά</div>
-            <h2 style={{ color: navy, fontSize: "1.1rem", fontWeight: 900, margin: 0 }}>Πολιτική Απορρήτου TaxIQ</h2>
+            <h2 style={{ color: navy, fontSize: "1.1rem", fontWeight: 900, margin: 0 }}>Πολιτική Απορρήτου & Προστασίας Δεδομένων</h2>
           </div>
           <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "1.4rem", cursor: "pointer", color: "#94a3b8" }}>✕</button>
         </div>
 
         <div style={{ padding: "20px 24px 32px" }}>
 
+          {/* Intro */}
+          <div style={{ background: "rgba(91,184,196,0.06)", border: "1px solid rgba(91,184,196,0.2)", borderRadius: 12, padding: "14px 16px", marginBottom: 22 }}>
+            <p style={{ fontSize: "0.82rem", color: "#334155", lineHeight: 1.75, margin: 0 }}>
+              Η παρούσα Πολιτική εξηγεί πώς το TaxIQ συλλέγει, χρησιμοποιεί και προστατεύει τα δεδομένα σας, διασφαλίζοντας την απόλυτη εχεμύθεια και τη συμμόρφωση με τον <strong style={{ color: navy }}>Γενικό Κανονισμό Προστασίας Δεδομένων (GDPR)</strong>.
+            </p>
+          </div>
+
           <Section num="1" title="Ποια δεδομένα συλλέγουμε;">
-            <p style={{ margin: "0 0 10px" }}>Συλλέγουμε μόνο τα απαραίτητα δεδομένα για τη λειτουργία της υπηρεσίας:</p>
-            <Bullet><strong style={{ color: navy }}>Στοιχεία Λογαριασμού:</strong> Ονοματεπώνυμο και Email για την είσοδο στην πλατφόρμα.</Bullet>
-            <Bullet><strong style={{ color: navy }}>Δεδομένα Χρέωσης:</strong> ΑΦΜ και στοιχεία τιμολόγησης (μόνο για τα πλάνα Professional & Business).</Bullet>
-            <Bullet><strong style={{ color: navy }}>Ιστορικό Ερωτημάτων:</strong> Τα ερωτήματα που υποβάλλετε στο AI αποθηκεύονται ανώνυμα για τη βελτίωση των απαντήσεων και την παροχή υποστήριξης.</Bullet>
+            <p style={{ margin: "0 0 10px" }}>Συλλέγουμε μόνο τα απαραίτητα δεδομένα για την παροχή των υπηρεσιών μας:</p>
+            <Bullet><strong style={{ color: navy }}>Στοιχεία Λογαριασμού:</strong> Ονοματεπώνυμο και Email για την είσοδο και ταυτοποίηση στην πλατφόρμα.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Δεδομένα Χρέωσης:</strong> ΑΦΜ και στοιχεία τιμολόγησης για συνδρομητές ή για μεμονωμένες αγορές υπηρεσιών (On-demand ερωτήματα).</Bullet>
+            <Bullet><strong style={{ color: navy }}>Ιστορικό Ερωτημάτων:</strong> Τα ερωτήματα που υποβάλλετε αποθηκεύονται με σκοπό τη βελτίωση των απαντήσεων, την παροχή υποστήριξης και τη δυνατότητα αναδρομής σας σε προηγούμενες απαντήσεις.</Bullet>
           </Section>
 
           <Section num="2" title="Πώς χρησιμοποιούμε τα δεδομένα σας;">
-            <Bullet>Για την παροχή των υπηρεσιών του TaxIQ.</Bullet>
-            <Bullet>Για την επικοινωνία σχετικά με τη συνδρομή σας ή τεχνικά θέματα.</Bullet>
-            <Bullet>Για τη συμμόρφωση με τις φορολογικές μας υποχρεώσεις (έκδοση τιμολογίων).</Bullet>
+            <Bullet><strong style={{ color: navy }}>Παροχή Απαντήσεων:</strong> Επεξεργασία των ερωτημάτων μέσω του μοντέλου Τεχνητής Νοημοσύνης του TaxIQ.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Ανθρώπινη Επιβεβαίωση:</strong> Σε περίπτωση που ζητήσετε επικύρωση από την επιστημονική μας ομάδα (Λογιστές Α' Τάξης), οι ειδικοί μας αποκτούν πρόσβαση στο συγκεκριμένο ερώτημα για την αξιολόγησή του.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Επικοινωνία:</strong> Για ενημερώσεις σχετικά με τη συνδρομή σας, τεχνικά θέματα ή την έκδοση παραστατικών.</Bullet>
           </Section>
 
-          <Section num="3" title="Προστασία Δεδομένων & Εχεμύθεια">
-            <p style={{ margin: "0 0 10px" }}>Το TaxIQ εφαρμόζει αυστηρά πρωτόκολλα ασφαλείας.</p>
-            <Bullet>Τα δεδομένα σας <strong style={{ color: navy }}>δεν πωλούνται</strong> και δεν κοινοποιούνται σε τρίτους για διαφημιστικούς σκοπούς.</Bullet>
-            <Bullet>Η επεξεργασία των δεδομένων γίνεται εντός της <strong style={{ color: navy }}>ΕΕ</strong> σύμφωνα με τον Κανονισμό <strong style={{ color: navy }}>GDPR</strong>.</Bullet>
-            <Bullet>Τα ερωτήματα που υποβάλλετε τυγχάνουν επεξεργασίας από το μοντέλο AI με σκοπό την παραγωγή απάντησης, χωρίς όμως να χρησιμοποιούνται για την εκπαίδευση (training) δημόσιων μοντέλων τρίτων.</Bullet>
+          <Section num="3" title="Ασφάλεια & Εχεμύθεια">
+            <p style={{ margin: "0 0 10px" }}>Το TaxIQ εφαρμόζει αυστηρά πρωτόκολλα ασφαλείας:</p>
+            <Bullet><strong style={{ color: navy }}>Κρυπτογράφηση:</strong> Τα δεδομένα μεταφέρονται και αποθηκεύονται με προηγμένες μεθόδους κρυπτογράφησης.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Ιδιωτικότητα AI:</strong> Τα ερωτήματά σας παραμένουν ιδιωτικά. Δεν χρησιμοποιούνται για την εκπαίδευση (training) δημόσιων μοντέλων AI τρίτων εταιρειών.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Μη Κοινοποίηση:</strong> Τα δεδομένα σας δεν πωλούνται και δεν κοινοποιούνται σε τρίτους για διαφημιστικούς σκοπούς. Η επεξεργασία γίνεται εντός της Ευρωπαϊκής Ένωσης.</Bullet>
           </Section>
 
           <Section num="4" title="Τα Δικαιώματά σας">
-            <p style={{ margin: "0 0 10px" }}>Έχετε το δικαίωμα πρόσβασης, διόρθωσης ή διαγραφής των δεδομένων σας ανά πάσα στιγμή, στέλνοντας email στο:</p>
+            <p style={{ margin: "0 0 10px" }}>Ως χρήστης, έχετε τον πλήρη έλεγχο των δεδομένων σας:</p>
+            <Bullet><strong style={{ color: navy }}>Πρόσβαση & Διόρθωση:</strong> Δικαίωμα προβολής και επεξεργασίας των στοιχείων σας.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Διαγραφή:</strong> Δικαίωμα να ζητήσετε την οριστική διαγραφή του λογαριασμού και του ιστορικού σας.</Bullet>
+            <Bullet><strong style={{ color: navy }}>Φορητότητα:</strong> Δικαίωμα να λάβετε τα δεδομένα σας σε δομημένη, ψηφιακή μορφή.</Bullet>
+          </Section>
+
+          <Section num="5" title="Επικοινωνία">
+            <p style={{ margin: "0 0 8px" }}>Για οποιοδήποτε θέμα αφορά τα δεδομένα σας, επικοινωνήστε μαζί μας:</p>
             <a href="mailto:info@taxiq.com.gr" style={{ color: orange, fontWeight: 700, textDecoration: "none", fontSize: "0.88rem" }}>info@taxiq.com.gr</a>
           </Section>
 
@@ -1639,19 +1653,11 @@ export default function TaxIQ() {
             <span style={{ fontSize: "0.5rem", color: "#1a2b5e", fontWeight: 500 }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
-            <div style={{ display: "flex", gap: 6 }}>
-              <button onClick={exportUserData}
-                title="Εξαγωγή δεδομένων μου"
-                style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                Τα δεδομένα μου
-              </button>
-              <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
-                style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                Αποσύνδεση
-              </button>
-            </div>
+            <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
+              style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              Αποσύνδεση
+            </button>
           ) : (
             <button onClick={() => setShowAuthModal(true)}
               style={{ display: "flex", alignItems: "center", gap: 4, background: orange, border: "none", borderRadius: 20, padding: "5px 12px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 700, boxShadow: "0 2px 6px rgba(232,98,42,0.4)" }}>
@@ -2014,9 +2020,9 @@ export default function TaxIQ() {
                 {/* Νομικά */}
                 <div>
                   <h4 style={{ color: "#fff", fontSize: "0.85rem", fontWeight: 700, marginBottom: 14, letterSpacing: "0.05em" }}>Νομικά</h4>
-                  {["Όροι Χρήσης", "Πολιτική Απορρήτου", "Πολιτική Cookies"].map(item => (
+                  {["Όροι Χρήσης", "Πολιτική Απορρήτου & Προστασίας Δεδομένων", "Πολιτική Cookies"].map(item => (
                     <div key={item} style={{ marginBottom: 8 }}>
-                      <a href="#" onClick={e => { e.preventDefault(); if(item === "Όροι Χρήσης") setShowTerms(true); if(item === "Πολιτική Απορρήτου") setShowPrivacy(true); if(item === "Πολιτική Cookies") setShowCookiePolicy(true); }}
+                      <a href="#" onClick={e => { e.preventDefault(); if(item === "Όροι Χρήσης") setShowTerms(true); if(item === "Πολιτική Απορρήτου & Προστασίας Δεδομένων") setShowPrivacy(true); if(item === "Πολιτική Cookies") setShowCookiePolicy(true); }}
                         style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.78rem", textDecoration: "none" }}
                         onMouseEnter={e => e.target.style.color = "#E8622A"}
                         onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.55)"}>{item}</a>
