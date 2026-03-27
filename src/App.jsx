@@ -285,7 +285,7 @@ const AboutModal = ({ onClose, onSignup, user }) => {
   );
 };
 
-const ContactModal = ({ onClose }) => {
+const ContactModal = ({ onClose, onPrivacy }) => {
   const navy = "#1a2b5e";
   const orange = "#E8622A";
   const teal = "#5bb8c4";
@@ -326,22 +326,7 @@ const ContactModal = ({ onClose }) => {
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.82rem", lineHeight: 1.65, margin: "0 0 16px" }}>
             Στο TaxIQ, η τεχνολογία της Τεχνητής Νοημοσύνης συναντά την πολυετή εμπειρία της επιστημονικής μας ομάδας. Είμαστε εδώ για να δώσουμε λύσεις, είτε είστε ιδιώτης που αναζητά καθοδήγηση, είτε επαγγελματίας που επιθυμεί έναν αξιόπιστο σύμμαχο.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            {[
-              { title: "Ιδιώτες & Επιχειρήσεις", items: ["Έναρξη Νέας Επιχείρησης", "Ολοκληρωμένη Λογιστική Κάλυψη", "Επίλυση Σύνθετων Φορολογικών Ζητημάτων"] },
-              { title: "Επαγγελματίες Συνεργάτες", items: ["Απόλυτη Εχεμύθεια", "Back-office Υποστήριξη", "Δίκτυο Συνεργατών"] },
-            ].map((col, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 12, padding: "12px 14px" }}>
-                <div style={{ fontSize: "0.72rem", fontWeight: 700, color: teal, marginBottom: 8, letterSpacing: "0.04em" }}>{col.title}</div>
-                {col.items.map((item, j) => (
-                  <div key={j} style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 5 }}>
-                    <span style={{ color: orange, fontSize: "0.7rem", marginTop: 2, flexShrink: 0 }}>›</span>
-                    <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.75rem", lineHeight: 1.4 }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+
         </div>
 
         {/* Form */}
@@ -353,15 +338,9 @@ const ContactModal = ({ onClose }) => {
                 onFocus={e => e.target.style.borderColor = teal} onBlur={e => e.target.style.borderColor = "#e2e8f0"} />
             </div>
             <div>
-              <label style={labelStyle}>Ιδιότητα</label>
-              <select value={form.role} onChange={e => set("role", e.target.value)} style={{ ...inputStyle, background: "#fff" }}>
-                <option value="">Επιλέξτε...</option>
-                <option>Ιδιώτης</option>
-                <option>Επιχειρηματίας</option>
-                <option>Λογιστής</option>
-                <option>Δικηγόρος</option>
-                <option>Άλλο</option>
-              </select>
+              <label style={labelStyle}>Ιδιότητα <span style={{ color: "#94a3b8", fontWeight: 400 }}>(προαιρετικό)</span></label>
+              <input value={form.role} onChange={e => set("role", e.target.value)} placeholder="π.χ. Λογιστής, Επιχειρηματίας..." style={inputStyle}
+                onFocus={e => e.target.style.borderColor = teal} onBlur={e => e.target.style.borderColor = "#e2e8f0"} />
             </div>
             <div>
               <label style={labelStyle}>E-mail *</label>
@@ -375,15 +354,9 @@ const ContactModal = ({ onClose }) => {
             </div>
           </div>
           <div style={{ marginBottom: 14 }}>
-            <label style={labelStyle}>Θέμα Ενδιαφέροντος</label>
-            <select value={form.subject} onChange={e => set("subject", e.target.value)} style={{ ...inputStyle, background: "#fff" }}>
-              <option value="">Επιλέξτε...</option>
-              <option>Έναρξη Επιχείρησης</option>
-              <option>Λογιστική Υποστήριξη</option>
-              <option>Συνεργασία Επαγγελματιών</option>
-              <option>Τεχνικό Θέμα</option>
-              <option>Άλλο</option>
-            </select>
+            <label style={labelStyle}>Θέμα</label>
+            <input value={form.subject} onChange={e => set("subject", e.target.value)} placeholder="Περιγράψτε το θέμα σας..." style={inputStyle}
+              onFocus={e => e.target.style.borderColor = teal} onBlur={e => e.target.style.borderColor = "#e2e8f0"} />
           </div>
           <div style={{ marginBottom: 18 }}>
             <label style={labelStyle}>Το Μήνυμά σας *</label>
@@ -400,7 +373,7 @@ const ContactModal = ({ onClose }) => {
             </label>
             <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
               <input type="checkbox" checked={form.gdpr} onChange={e => set("gdpr", e.target.checked)} style={{ marginTop: 2, flexShrink: 0, accentColor: navy }} />
-              <span style={{ fontSize: "0.8rem", color: "#475569" }}>Έχω διαβάσει και αποδέχομαι την <a href="#" style={{ color: teal, fontWeight: 600 }}>Πολιτική Προστασίας Προσωπικών Δεδομένων</a>.</span>
+              <span style={{ fontSize: "0.8rem", color: "#475569" }}>Έχω διαβάσει και αποδέχομαι την <a href="#" onClick={e => { e.preventDefault(); if(onPrivacy) onPrivacy(); }} style={{ color: teal, fontWeight: 600, textDecoration: "none" }}>Πολιτική Απορρήτου & Προστασίας Δεδομένων</a>.</span>
             </label>
           </div>
 
@@ -1670,7 +1643,7 @@ export default function TaxIQ() {
 
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); }} />}
       {showPricingPage && <PricingPage onClose={() => setShowPricingPage(false)} user={user} onSignup={() => { setShowPricingPage(false); setShowAuthModal(true); }} />}
-      {showContact && <ContactModal onClose={() => setShowContact(false)} />}
+      {showContact && <ContactModal onClose={() => setShowContact(false)} onPrivacy={() => { setShowContact(false); setShowPrivacy(true); }} />}
       {showAbout && <AboutModal onClose={() => setShowAbout(false)} user={user} onSignup={() => { setShowAbout(false); setShowAuthModal(true); }} />}
       {showCookiePolicy && <CookiePolicyModal onClose={() => setShowCookiePolicy(false)} />}
       {showPrivacy && <PrivacyModal onClose={() => setShowPrivacy(false)} />}
