@@ -1633,24 +1633,24 @@ export default function TaxIQ() {
     <div style={{ minHeight: "100vh", background: `linear-gradient(135deg, ${navyDark} 0%, ${navy} 50%, ${navyDark} 100%)`, fontFamily: "'Georgia', 'Times New Roman', serif", display: "flex", flexDirection: "column" }}>
 
       {/* Header */}
-      <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: `1px solid rgba(91,184,196,0.2)`, padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", backdropFilter: "blur(10px)", overflow: "hidden" }}>
+      <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: `1px solid rgba(91,184,196,0.2)`, padding: "10px clamp(10px, 3vw, 20px)", display: "flex", alignItems: "center", justifyContent: "space-between", backdropFilter: "blur(10px)", overflow: "hidden" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => { setMessages([]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
           <TaxIQLogo size={68} />
           <div style={{ display: "inline-flex", flexDirection: "column", justifyContent: "center" }}>
-            <div id="taxiq-title" style={{ fontSize: "1.6rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, display: "inline-block" }}>
+            <div id="taxiq-title" style={{ fontSize: "clamp(1.1rem, 4vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, display: "inline-block", whiteSpace: "nowrap" }}>
               Tax<span style={{ color: orange }}>IQ</span><span style={{ color: teal, fontSize: "0.7em", fontWeight: 600, letterSpacing: "0.05em" }}> AI</span>
             </div>
-            <div style={{ fontSize: "0.72rem", color: teal, marginTop: 2, textAlign: "justify", textAlignLast: "justify" }}>
+            <div style={{ fontSize: "clamp(0.58rem, 2.2vw, 0.72rem)", color: teal, marginTop: 2, whiteSpace: "nowrap", letterSpacing: "0.06em" }}>
               Your <span style={{ color: "#f59e0b", fontWeight: 700 }}>24/7</span> Accountant
             </div>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg, #0f1c3f, #1a2b5e)", border: "1px solid rgba(91,184,196,0.3)", borderRadius: 20, padding: "6px 14px", whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(0,0,0,0.3)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg, #0f1c3f, #1a2b5e)", border: "1px solid rgba(91,184,196,0.3)", borderRadius: 20, padding: "6px clamp(8px, 2vw, 14px)", whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(0,0,0,0.3)", maxWidth: "clamp(120px, 45vw, 300px)", overflow: "hidden" }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#dc2626", animation: "pulse 1.2s infinite", flexShrink: 0, boxShadow: "0 0 6px rgba(220,38,38,0.6)" }} />
-            <span style={{ fontSize: "0.78rem", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite", letterSpacing: "0.05em" }}>Live</span>
-            <span style={{ width: 1, height: 12, background: "rgba(91,184,196,0.3)", display: "inline-block" }} />
-            <span style={{ fontSize: "0.6rem", color: teal, fontWeight: 700, letterSpacing: "0.08em" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
+            <span style={{ fontSize: "clamp(0.6rem, 2vw, 0.78rem)", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite", letterSpacing: "0.05em" }}>Live</span>
+            <span style={{ width: 1, height: 12, background: "rgba(91,184,196,0.3)", display: "inline-block", flexShrink: 0 }} />
+            <span style={{ fontSize: "clamp(0.48rem, 1.5vw, 0.6rem)", color: teal, fontWeight: 700, letterSpacing: "0.05em", overflow: "hidden", textOverflow: "ellipsis" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ</span>
           </div>
           {user ? (
             <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
@@ -1749,7 +1749,7 @@ export default function TaxIQ() {
             </p>
 
             {/* Stats cards */}
-            <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, maxWidth: 560, margin: "0 auto 24px" }}>
+            <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, maxWidth: 560, margin: "0 auto 24px" }}>
               {[
                 { value: "10.000+", label: "Ερωτήσεις Απαντήθηκαν" },
                 { value: "Real-Time", label: "Ενημέρωση Νομοθεσίας" },
@@ -2208,6 +2208,7 @@ export default function TaxIQ() {
 
         /* Mobile (max 600px) */
         @media (max-width: 600px) {
+          .stats-grid { grid-template-columns: 1fr 1fr !important; }
           /* Header */
           .taxiq-header { padding: 10px 12px !important; }
           .taxiq-logo-text { font-size: 1.2rem !important; }
