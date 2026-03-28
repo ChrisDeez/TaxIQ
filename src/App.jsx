@@ -1640,7 +1640,7 @@ export default function TaxIQ() {
             <div id="taxiq-title" style={{ fontSize: "clamp(1.1rem, 4vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, display: "inline-block", whiteSpace: "nowrap" }}>
               Tax<span style={{ color: orange }}>IQ</span><span style={{ color: teal, fontSize: "0.7em", fontWeight: 600, letterSpacing: "0.05em" }}> AI</span>
             </div>
-            <div style={{ fontSize: "clamp(0.58rem, 2.2vw, 0.72rem)", color: teal, marginTop: 2, whiteSpace: "nowrap", letterSpacing: "0.06em" }}>
+            <div style={{ fontSize: "clamp(0.58rem, 2.2vw, 0.72rem)", color: teal, marginTop: 5, whiteSpace: "nowrap", width: "100%", textAlign: "justify", textAlignLast: "justify" }}>
               Your <span style={{ color: "#f59e0b", fontWeight: 700 }}>24/7</span> Accountant
             </div>
           </div>
@@ -1650,7 +1650,7 @@ export default function TaxIQ() {
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#dc2626", animation: "pulse 1.2s infinite", flexShrink: 0, boxShadow: "0 0 6px rgba(220,38,38,0.6)" }} />
             <span style={{ fontSize: "clamp(0.6rem, 2vw, 0.78rem)", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite", letterSpacing: "0.05em" }}>Live</span>
             <span style={{ width: 1, height: 12, background: "rgba(91,184,196,0.3)", display: "inline-block", flexShrink: 0 }} />
-            <span style={{ fontSize: "clamp(0.48rem, 1.5vw, 0.6rem)", color: teal, fontWeight: 700, letterSpacing: "0.05em", overflow: "hidden", textOverflow: "ellipsis" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ</span>
+            <span style={{ fontSize: "clamp(0.48rem, 1.5vw, 0.6rem)", color: teal, fontWeight: 700, letterSpacing: "0.05em", overflow: "hidden", textOverflow: "ellipsis" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
             <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
@@ -1997,7 +1997,7 @@ export default function TaxIQ() {
             <div style={{ marginTop: 48, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 40, paddingBottom: 24 }}>
               
               {/* Footer columns */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 32, marginBottom: 40, maxWidth: 900, margin: "0 auto 40px" }}>
+              <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 32, marginBottom: 40, maxWidth: 900, margin: "0 auto 40px" }}>
                 
                 {/* Brand column */}
                 <div>
@@ -2236,7 +2236,7 @@ export default function TaxIQ() {
           .modal-header h2 { font-size: 0.95rem !important; }
 
           /* Footer */
-          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; font-size: 0.85rem !important; }
           .footer-bottom { flex-direction: column !important; gap: 6px !important; text-align: center !important; }
 
           /* CTA pre-footer */
