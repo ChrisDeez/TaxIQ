@@ -849,12 +849,12 @@ const FAQModal = ({ onClose }) => {
 };
 
 const CookieBanner = ({ onAccept, onReject, onCustomize }) => (
-  <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 3000, background: "#fff", borderTop: "1px solid rgba(26,43,94,0.12)", boxShadow: "0 -4px 24px rgba(0,0,0,0.1)", padding: "14px 20px", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+  <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 3000, background: "#fff", borderTop: "1px solid rgba(26,43,94,0.12)", boxShadow: "0 -4px 24px rgba(0,0,0,0.1)", padding: "clamp(10px, 3vw, 14px) clamp(12px, 4vw, 20px)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
     <div style={{ display: "flex", alignItems: "flex-start", gap: 12, flex: 1, minWidth: 260 }}>
       <div style={{ fontSize: "1.4rem", flexShrink: 0, marginTop: 1 }}>🍪</div>
       <div>
-        <div style={{ fontSize: "0.88rem", fontWeight: 800, color: "#1a2b5e", marginBottom: 3 }}>Cookies στο TaxIQ</div>
-        <p style={{ fontSize: "0.78rem", color: "#64748b", margin: 0, lineHeight: 1.55 }}>
+        <div style={{ fontSize: "clamp(0.78rem, 3vw, 0.88rem)", fontWeight: 800, color: "#1a2b5e", marginBottom: 3 }}>Cookies στο TaxIQ</div>
+        <p style={{ fontSize: "clamp(0.68rem, 2.5vw, 0.78rem)", color: "#64748b", margin: 0, lineHeight: 1.45 }}>
           Χρησιμοποιούμε cookies για να διασφαλίσουμε τη σωστή λειτουργία της πλατφόρμας, να βελτιώσουμε την εμπειρία σας και να αναλύουμε την επισκεψιμότητα, ώστε να γινόμαστε καλύτεροι.{" "}
           <a href="#" onClick={e => { e.preventDefault(); setShowCookiePolicy(true); }} style={{ color: "#5bb8c4", fontWeight: 600, textDecoration: "none" }}
             onMouseEnter={e => e.target.style.textDecoration = "underline"}
@@ -866,7 +866,7 @@ const CookieBanner = ({ onAccept, onReject, onCustomize }) => (
     </div>
     <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
       <button onClick={onCustomize}
-        style={{ display: "flex", alignItems: "center", gap: 6, background: "none", border: "1px solid rgba(26,43,94,0.2)", borderRadius: 8, padding: "8px 14px", color: "#1a2b5e", fontSize: "0.82rem", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
+        style={{ display: "flex", alignItems: "center", gap: 6, background: "none", border: "1px solid rgba(26,43,94,0.2)", borderRadius: 8, padding: "clamp(6px,2vw,8px) clamp(10px,3vw,14px)", color: "#1a2b5e", fontSize: "clamp(0.72rem,2.5vw,0.82rem)", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
         onMouseEnter={e => e.currentTarget.style.borderColor = "#1a2b5e"}
         onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(26,43,94,0.2)"}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#1a2b5e" strokeWidth="2"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#1a2b5e" strokeWidth="2" strokeLinecap="round"/></svg>
@@ -1783,7 +1783,7 @@ export default function TaxIQ() {
                 onKeyDown={handleKey}
                 placeholder={`Ρωτήστε οτιδήποτε για ${placeholderWords[placeholderIndex]}...`}
                 rows={1}
-                style={{ flex: 1, resize: "none", border: `1px solid rgba(91,184,196,0.3)`, borderRadius: 14, padding: "12px 16px", background: "#ffffff", color: "#1a2b5e", fontSize: "0.9rem", fontFamily: "inherit", outline: "none", lineHeight: 1.5, boxSizing: "border-box", transition: "border-color 0.2s" }}
+                style={{ flex: 1, resize: "none", border: `1px solid rgba(91,184,196,0.3)`, borderRadius: 14, padding: "10px 12px", background: "#ffffff", color: "#1a2b5e", fontSize: "clamp(0.75rem, 3vw, 0.9rem)", fontFamily: "inherit", outline: "none", lineHeight: 1.4, boxSizing: "border-box", transition: "border-color 0.2s" }}
                 onFocus={e => e.target.style.borderColor = `rgba(91,184,196,0.7)`}
                 onBlur={e => e.target.style.borderColor = "rgba(91,184,196,0.3)"}
               />
@@ -1795,7 +1795,7 @@ export default function TaxIQ() {
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 20V4M12 4L5 11M12 4L19 11" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </div>
-            <p style={{ textAlign: "center", color: "#ffffff", fontSize: "0.68rem", marginTop: 8, maxWidth: 600, margin: "8px auto 0" }}>
+            <p style={{ textAlign: "center", color: "#ffffff", fontSize: "clamp(0.6rem, 2.2vw, 0.68rem)", marginTop: 8, maxWidth: 600, margin: "8px auto 0", lineHeight: 1.6, padding: "0 8px" }}>
               Δεν αντικαθιστά επαγγελματία λογιστή · Για σύνθετα θέματα συμβουλευτείτε ειδικό
             </p>
             {!user && (
