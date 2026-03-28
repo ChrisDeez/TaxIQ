@@ -1634,23 +1634,23 @@ export default function TaxIQ() {
 
       {/* Header */}
       <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: `1px solid rgba(91,184,196,0.2)`, padding: "10px clamp(10px, 3vw, 20px)", display: "flex", alignItems: "center", justifyContent: "space-between", backdropFilter: "blur(10px)", overflow: "hidden" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => { setMessages([]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
-          <TaxIQLogo size={68} />
+        <div style={{ display: "flex", alignItems: "center", gap: "clamp(6px, 2vw, 12px)", cursor: "pointer" }} onClick={() => { setMessages([]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+          <TaxIQLogo size="clamp(42px, 10vw, 68px)" />
           <div style={{ display: "inline-flex", flexDirection: "column", justifyContent: "center" }}>
-            <div id="taxiq-title" style={{ fontSize: "clamp(1.1rem, 4vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, display: "inline-block", whiteSpace: "nowrap" }}>
+            <div id="taxiq-title" style={{ fontSize: "clamp(1.05rem, 4vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, whiteSpace: "nowrap" }}>
               Tax<span style={{ color: orange }}>IQ</span><span style={{ color: teal, fontSize: "0.7em", fontWeight: 600, letterSpacing: "0.05em" }}> AI</span>
             </div>
-            <div style={{ fontSize: "clamp(0.58rem, 2.2vw, 0.72rem)", color: teal, marginTop: 5, whiteSpace: "nowrap", width: "100%", textAlign: "justify", textAlignLast: "justify" }}>
+            <div style={{ fontSize: "clamp(0.55rem, 2vw, 0.72rem)", color: teal, marginTop: 4, whiteSpace: "nowrap", textAlign: "justify", textAlignLast: "justify" }}>
               Your <span style={{ color: "#f59e0b", fontWeight: 700 }}>24/7</span> Accountant
             </div>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg, #0f1c3f, #1a2b5e)", border: "1px solid rgba(91,184,196,0.3)", borderRadius: 20, padding: "6px clamp(8px, 2vw, 14px)", whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(0,0,0,0.3)", maxWidth: "clamp(120px, 45vw, 300px)", overflow: "hidden" }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#dc2626", animation: "pulse 1.2s infinite", flexShrink: 0, boxShadow: "0 0 6px rgba(220,38,38,0.6)" }} />
-            <span style={{ fontSize: "clamp(0.6rem, 2vw, 0.78rem)", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite", letterSpacing: "0.05em" }}>Live</span>
-            <span style={{ width: 1, height: 12, background: "rgba(91,184,196,0.3)", display: "inline-block", flexShrink: 0 }} />
-            <span style={{ fontSize: "clamp(0.48rem, 1.5vw, 0.6rem)", color: teal, fontWeight: 700, letterSpacing: "0.05em", overflow: "hidden", textOverflow: "ellipsis" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 5, background: "linear-gradient(135deg, #0f1c3f, #1a2b5e)", border: "1px solid rgba(91,184,196,0.3)", borderRadius: 20, padding: "5px clamp(8px, 2vw, 12px)", whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(0,0,0,0.3)", maxWidth: "clamp(100px, 42vw, 260px)", overflow: "hidden" }}>
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#dc2626", animation: "pulse 1.2s infinite", flexShrink: 0, boxShadow: "0 0 5px rgba(220,38,38,0.6)" }} />
+            <span style={{ fontSize: "clamp(0.58rem, 2vw, 0.75rem)", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite", letterSpacing: "0.03em" }}>Live</span>
+            <span style={{ width: 1, height: 10, background: "rgba(91,184,196,0.3)", display: "inline-block", flexShrink: 0 }} />
+            <span style={{ fontSize: "clamp(0.44rem, 1.4vw, 0.57rem)", color: teal, fontWeight: 700, letterSpacing: "0.03em", overflow: "hidden", textOverflow: "ellipsis" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
             <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
