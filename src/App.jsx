@@ -147,6 +147,25 @@ const ALL_REVIEWS = [
   { stars: 5, text: "Είμαι δημόσιος υπάλληλος και δεν ήξερα πώς να δηλώσω τα επιπλέον εισοδήματά μου. Το TaxIQ AI μου έδωσε σαφείς οδηγίες βήμα-βήμα.", name: "Βασίλης Χ.", role: "Δημόσιος Υπάλληλος - Υπουργείο" },
   { stars: 5, text: "Έχω εστιατόριο και πάντα είχα σύγχυση με δώρα εορτών, άδειες και ΕΡΓΑΝΗ. Το TaxIQ AI μου τα εξηγεί όλα απλά και με παραδείγματα.", name: "Σταύρος Π.", role: "Ιδιοκτήτης Εστιατορίου" },
   { stars: 5, text: "Ως ιατρός με ιδιωτικό ιατρείο έχω ιδιαίτερες φορολογικές υποχρεώσεις. Το TaxIQ AI με κρατά ενήμερο για εισφορές ΕΦΚΑ και αλλαγές στη φορολογία ελευθέρων επαγγελματιών.", name: "Κατερίνα Β.", role: "Παθολόγος - Ιδιωτικό Ιατρείο" },
+  { stars: 5, text: "Το TaxIQ AI μου εξήγησε τι δικαιούμαι ως νέος αγρότης — επιδοτήσεις, φορολογική μεταχείριση, ασφαλιστικές εισφορές. Πρώτη φορά αισθάνομαι ότι καταλαβαίνω τι συμβαίνει με τα οικονομικά της εκμετάλλευσής μου.", name: "Θανάσης Μ.", role: "Αγροτοκτηνοτρόφος" },
+  { stars: 5, text: "Έχω ατομική επιχείρηση στον χώρο της πληροφορικής. Συνεχώς αλλάζουν τα ποσοστά ΦΠΑ σε ψηφιακές υπηρεσίες. Το TaxIQ AI μου δίνει πάντα την τελευταία ενημέρωση χωρίς να χάνω χρόνο.", name: "Πάνος Α.", role: "Σύμβουλος IT - Ατομική Επιχείρηση" },
+  { stars: 5, text: "Είμαι νοσηλεύτρια και δεν ήξερα πώς να δηλώσω τις νυχτερινές βάρδιες και τα επιδόματα μου στη φορολογική δήλωση. Το TaxIQ AI μου έδωσε ξεκάθαρες απαντήσεις σε λίγα λεπτά.", name: "Σοφία Γ.", role: "Νοσηλεύτρια - ΕΣΥ" },
+  { stars: 5, text: "Ανοίγω e-shop και δεν ήξερα τίποτα για τον ΦΠΑ στο ηλεκτρονικό εμπόριο, τις υποχρεώσεις IOSS και τη φορολόγηση. Το TaxIQ AI με βοήθησε να ξεκινήσω σωστά.", name: "Μελίνα Τ.", role: "Ιδιοκτήτρια E-shop" },
+  { stars: 5, text: "Δουλεύω ως ναυτικός και η φορολόγησή μας είναι πολύπλοκη. Το TaxIQ AI ήταν η μόνη πηγή που μου εξήγησε με σαφήνεια τις ειδικές φορολογικές ρυθμίσεις για το επάγγελμά μου.", name: "Κώστας Ν.", role: "Αξιωματικός Εμπορικού Ναυτικού" },
+  { stars: 5, text: "Έχω αρτοποιείο 3ης γενιάς. Οι εργατικές σχέσεις, οι νυχτερινές βάρδιες και τα δώρα εορτών ήταν πάντα ένας λαβύρινθος. Τώρα έχω ξεκάθαρη εικόνα χάρη στο TaxIQ AI.", name: "Μανώλης Κ.", role: "Ιδιοκτήτης Αρτοποιείου" },
+  { stars: 5, text: "Συνεργάζομαι με εταιρείες του εξωτερικού. Το TaxIQ AI με βοήθησε να καταλάβω τις υποχρεώσεις μου για ενδοκοινοτικές συναλλαγές και φορολογία αλλοδαπών εσόδων.", name: "Ιωάννα Π.", role: "Σύμβουλος Επιχειρήσεων" },
+  { stars: 5, text: "Είμαι δικηγόρος και χρησιμοποιώ το TaxIQ AI για γρήγορη φορολογική ενημέρωση των πελατών μου. Εξοικονομώ ώρες έρευνας και δίνω πιο τεκμηριωμένες απαντήσεις.", name: "Αλέξης Π.", role: "Δικηγόρος - Εμπορικό Δίκαιο" },
+  { stars: 5, text: "Αγόρασα διαμέρισμα για να το νοικιάζω βραχυχρόνια μέσω Airbnb. Δεν ήξερα τίποτα για τις φορολογικές υποχρεώσεις. Το TaxIQ AI μου εξήγησε τα πάντα βήμα βήμα.", name: "Ρένα Δ.", role: "Ιδιοκτήτρια Ακινήτου - Βραχυχρόνια Μίσθωση" },
+  { stars: 5, text: "Δουλεύω ως αρχιτέκτονας με παράλληλα ένσημα και μισθό. Η φορολόγησή μου ήταν πάντα μπερδεμένη. Το TaxIQ AI μου έδωσε ξεκάθαρη εικόνα για τις εισφορές και τη δήλωση μου.", name: "Στέλλα Λ.", role: "Αρχιτέκτονας Μηχανικός" },
+  { stars: 5, text: "Είμαι λογίστρια και συστήνω το TaxIQ AI σε όλους τους πελάτες μου για βασική ενημέρωση. Με βοηθάει να αφιερώνω τον χρόνο μου σε πιο σύνθετα θέματα.", name: "Χριστίνα Π.", role: "Λογίστρια Α' Τάξης - Φοροτεχνικός" },
+  { stars: 5, text: "Έχω εταιρεία καθαρισμού με 12 υπαλλήλους. Τα εργατικά ζητήματα, οι συλλογικές συμβάσεις και οι υποχρεώσεις ΕΡΓΑΝΗ με βάραιναν. Το TaxIQ AI τώρα είναι ο πρώτος μου σύμβουλος.", name: "Γιάννης Β.", role: "Ιδιοκτήτης Εταιρείας Καθαρισμού" },
+  { stars: 5, text: "Είμαι νέος επιχειρηματίας και άνοιξα μπαρ. Δεν ήξερα τίποτα για τις άδειες, τον ΦΠΑ εστίασης και τις υποχρεώσεις ΕΣΠΑ. Το TaxIQ AI ήταν ο οδηγός μου από την αρχή.", name: "Τάσος Α.", role: "Ιδιοκτήτης Bar - Εστίαση" },
+  { stars: 5, text: "Είμαι φυσιοθεραπεύτρια με ιδιωτικό εργαστήριο. Μάθαινα για τις εισφορές ΕΦΚΑ και τον ΦΠΑ στις υπηρεσίες υγείας κάθε φορά που έκανα λάθη. Τώρα ρωτάω πρώτα το TaxIQ AI.", name: "Νατάσα Β.", role: "Φυσιοθεραπεύτρια" },
+  { stars: 5, text: "Είμαι YouTuber και influencer. Δεν ήξερα πώς φορολογούνται τα έσοδα από AdSense και χορηγίες. Το TaxIQ AI μου εξήγησε τα πάντα με απλά λόγια.", name: "Λίλη Κ.", role: "Content Creator" },
+  { stars: 5, text: "Ως φορολογικός σύμβουλος χρησιμοποιώ το TaxIQ AI για επαλήθευση και γρήγορη αναφορά σε νομοθεσία. Είναι ένα εξαιρετικό εργαλείο υποστήριξης για κάθε επαγγελματία.", name: "Νίκος Π.", role: "Φορολογικός Σύμβουλος" },
+  { stars: 5, text: "Έχω μεταφορική εταιρεία. Τα καύσιμα, ο ΦΠΑ στις μεταφορές και οι υποχρεώσεις ταχογράφου ήταν πάντα θέματα που με μπέρδευαν. Το TaxIQ AI τα λύνει άμεσα.", name: "Σπύρος Ν.", role: "Ιδιοκτήτης Μεταφορικής" },
+  { stars: 5, text: "Είμαι εκπαιδευτής ενηλίκων σε ΚΕΚ. Το TaxIQ AI με βοήθησε να καταλάβω πώς φορολογούνται τα έσοδα από σεμινάρια και ποιες εκπτώσεις δικαιούμαι.", name: "Αντωνία Μ.", role: "Εκπαιδεύτρια Ενηλίκων" },
+  { stars: 5, text: "Είμαι οδοντίατρος με ιδιωτικό οδοντιατρείο. Χάρη στο TaxIQ AI καταλαβαίνω πλέον τη φορολόγηση ιατρικών υπηρεσιών, τις εισφορές και τις εκπτώσεις επαγγελματικών εξόδων.", name: "Μιχάλης Ζ.", role: "Οδοντίατρος" },
   { stars: 5, text: "Είμαι νέος δικηγόρος και το TaxIQ AI με βοηθά να αντιμετωπίζω εργατικά και φορολογικά θέματα των πελατών μου με ακρίβεια και αυτοπεποίθηση.", name: "Λευτέρης Γ.", role: "Δικηγόρος - Εργατολόγος" },
   { stars: 5, text: "Νοσηλεύτρια στο ΕΣΥ με πολλές απορίες για εφημερίες, ΕΦΚΑ και σύνταξη. Το TaxIQ AI τα εξήγησε όλα με απλά λόγια — δεν χρειάστηκε να ψάξω πουθενά αλλού.", name: "Ζωή Π.", role: "Νοσηλεύτρια ΕΣΥ" },
   { stars: 5, text: "Διαχειρίζομαι το λογιστήριο εταιρείας με 50 εργαζόμενους. Το TaxIQ AI μάς βοηθά να είμαστε πάντα συμμορφωμένοι με τη νομοθεσία χωρίς χαμένο χρόνο.", name: "Ειρήνη Τ.", role: "Επικεφαλής Λογιστηρίου" },
@@ -1230,9 +1249,9 @@ const RotatingBanner = () => {
   }, []);
 
   return (
-    <span style={{ fontSize: "0.85rem", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", flexWrap: "nowrap", gap: 4, width: "100%", textAlign: "center" }}>
+    <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.85rem)", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", flexWrap: "nowrap", gap: "clamp(2px, 1vw, 4px)", width: "100%", textAlign: "center", whiteSpace: "nowrap" }}>
       <span style={{ fontWeight: 900, flexShrink: 0 }}>Η #1 Πλατφόρμα AI</span>
-      <span style={{ transition: "opacity 0.3s ease", opacity: fade ? 1 : 0, fontWeight: 700, display: "inline-block", minWidth: 220, textAlign: "center" }}>
+      <span style={{ transition: "opacity 0.3s ease", opacity: fade ? 1 : 0, fontWeight: 700, display: "inline-block", minWidth: "clamp(140px, 40vw, 220px)", textAlign: "center" }}>
         {suffixes[index]}
       </span>
     </span>
@@ -1282,6 +1301,12 @@ export default function TaxIQ() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showCookiePolicy, setShowCookiePolicy] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const placeholderWords = ["φορολογικά", "λογιστικά", "εργατικά", "ασφαλιστικά"];
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setPlaceholderIndex(i => (i + 1) % placeholderWords.length), 2000);
+    return () => clearInterval(t);
+  }, []);
   const [showAbout, setShowAbout] = useState(false);
   const [showPricingPage, setShowPricingPage] = useState(false);
   const [showCookieBanner, setShowCookieBanner] = useState(() => !localStorage.getItem("taxiq_cookie_consent"));
@@ -1296,7 +1321,7 @@ export default function TaxIQ() {
     const saved = localStorage.getItem("taxiq_free_q");
     return saved ? parseInt(saved) : 0;
   });
-  const FREE_LIMIT = 10;
+  const FREE_LIMIT = 2;
   const ADMIN_EMAIL = "dachris78@gmail.com"; // Admin panel access
   const CONTACT_EMAIL = "info@taxiq.com.gr";
   const bottomRef = useRef(null);
@@ -1611,19 +1636,21 @@ export default function TaxIQ() {
       <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: `1px solid rgba(91,184,196,0.2)`, padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", backdropFilter: "blur(10px)", overflow: "hidden" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={() => { setMessages([]); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
           <TaxIQLogo size={68} />
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+          <div style={{ display: "inline-flex", flexDirection: "column", justifyContent: "center" }}>
+            <div id="taxiq-title" style={{ fontSize: "1.6rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.1, display: "inline-block" }}>
               Tax<span style={{ color: orange }}>IQ</span><span style={{ color: teal, fontSize: "0.7em", fontWeight: 600, letterSpacing: "0.05em" }}> AI</span>
             </div>
-            <div style={{ fontSize: "0.55rem", color: teal, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: 2 }}>Λογιστικός Βοηθός AI</div>
+            <div style={{ fontSize: "0.72rem", color: teal, marginTop: 2, textAlign: "justify", textAlignLast: "justify" }}>
+              Your <span style={{ color: "#f59e0b", fontWeight: 700 }}>24/7</span> Accountant
+            </div>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "5px 10px", whiteSpace: "nowrap" }}>
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#dc2626", animation: "pulse 1.2s infinite", flexShrink: 0 }} />
-            <span style={{ fontSize: "0.82rem", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite" }}>Live</span>
-            <span style={{ fontSize: "0.5rem", color: "#1a2b5e", opacity: 0.4 }}>·</span>
-            <span style={{ fontSize: "0.5rem", color: "#1a2b5e", fontWeight: 500 }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg, #0f1c3f, #1a2b5e)", border: "1px solid rgba(91,184,196,0.3)", borderRadius: 20, padding: "6px 14px", whiteSpace: "nowrap", boxShadow: "0 2px 12px rgba(0,0,0,0.3)" }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#dc2626", animation: "pulse 1.2s infinite", flexShrink: 0, boxShadow: "0 0 6px rgba(220,38,38,0.6)" }} />
+            <span style={{ fontSize: "0.78rem", color: "#dc2626", fontWeight: 900, animation: "pulse 1.2s infinite", letterSpacing: "0.05em" }}>Live</span>
+            <span style={{ width: 1, height: 12, background: "rgba(91,184,196,0.3)", display: "inline-block" }} />
+            <span style={{ fontSize: "0.6rem", color: teal, fontWeight: 700, letterSpacing: "0.08em" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
             <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
@@ -1631,13 +1658,7 @@ export default function TaxIQ() {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               Αποσύνδεση
             </button>
-          ) : (
-            <button onClick={() => setShowAuthModal(true)}
-              style={{ display: "flex", alignItems: "center", gap: 4, background: orange, border: "none", borderRadius: 20, padding: "5px 12px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 700, boxShadow: "0 2px 6px rgba(232,98,42,0.4)" }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              Σύνδεση
-            </button>
-          )}
+          ) : null}
         </div>
       </div>
 
@@ -1708,7 +1729,7 @@ export default function TaxIQ() {
       {/* #1 banner + Auth button row */}
       {messages.length === 0 && (
         <div style={{ display: "flex", justifyContent: "center", padding: "8px 16px", background: "rgba(255,255,255,0.02)", borderBottom: `1px solid rgba(91,184,196,0.1)` }}>
-          <div style={{ display: "inline-flex", alignItems: "center", background: "#E8622A", borderRadius: 50, padding: "9px 22px", boxShadow: "0 4px 15px rgba(232,98,42,0.4)" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", background: "#E8622A", borderRadius: 50, padding: "clamp(6px, 2vw, 9px) clamp(12px, 4vw, 22px)", boxShadow: "0 4px 15px rgba(232,98,42,0.4)", maxWidth: "92vw", overflow: "hidden" }}>
             <RotatingBanner />
           </div>
         </div>
@@ -1728,10 +1749,12 @@ export default function TaxIQ() {
             </p>
 
             {/* Stats cards */}
-            <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, maxWidth: 560, margin: "0 auto 24px" }}>
+            <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, maxWidth: 560, margin: "0 auto 24px" }}>
               {[
                 { value: "10.000+", label: "Ερωτήσεις Απαντήθηκαν" },
                 { value: "Real-Time", label: "Ενημέρωση Νομοθεσίας" },
+                { value: "24/7", label: "Πρόσβαση Παντού" },
+                { value: "30+", label: "Έτη Εμπειρίας" },
                 { value: "4,8/5", label: "Μέση Αξιολόγηση" },
                 { value: "98%", label: "Ακρίβεια Απαντήσεων" },
               ].map((stat, i) => (
@@ -1758,7 +1781,7 @@ export default function TaxIQ() {
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKey}
-                placeholder="Ρωτήστε τον AI Βοηθό σας..."
+                placeholder={`Ρωτήστε οτιδήποτε για ${placeholderWords[placeholderIndex]}...`}
                 rows={1}
                 style={{ flex: 1, resize: "none", border: `1px solid rgba(91,184,196,0.3)`, borderRadius: 14, padding: "12px 16px", background: "#ffffff", color: "#1a2b5e", fontSize: "0.9rem", fontFamily: "inherit", outline: "none", lineHeight: 1.5, boxSizing: "border-box", transition: "border-color 0.2s" }}
                 onFocus={e => e.target.style.borderColor = `rgba(91,184,196,0.7)`}
@@ -1775,6 +1798,17 @@ export default function TaxIQ() {
             <p style={{ textAlign: "center", color: "#ffffff", fontSize: "0.68rem", marginTop: 8, maxWidth: 600, margin: "8px auto 0" }}>
               Δεν αντικαθιστά επαγγελματία λογιστή · Για σύνθετα θέματα συμβουλευτείτε ειδικό
             </p>
+            {!user && (
+              <div style={{ display: "flex", justifyContent: "center", marginTop: 14 }}>
+                <button onClick={() => setShowAuthModal(true)}
+                  style={{ display: "flex", alignItems: "center", gap: 8, background: `linear-gradient(135deg, ${orange}, #c94d1a)`, border: "none", borderRadius: 50, padding: "10px 28px", color: "#fff", fontSize: "0.88rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 700, boxShadow: "0 4px 16px rgba(232,98,42,0.4)", transition: "all 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "#c94d1a"}
+                  onMouseLeave={e => e.currentTarget.style.background = `linear-gradient(135deg, ${orange}, #c94d1a)`}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  Σύνδεση / Εγγραφή
+                </button>
+              </div>
+            )}
 
             {/* Feature cards */}
             <div className="feature-cards" style={{ maxWidth: 600, margin: "28px auto 0", display: "flex", flexDirection: "column", gap: 12 }}>
@@ -1799,13 +1833,29 @@ export default function TaxIQ() {
                   title: "Φορολογικά, Ασφαλιστικά & Εργατικά",
                   desc: "Καλύπτει όλους τους τομείς: ΦΠΑ, εισοδηματικός φόρος, ΕΦΚΑ, μισθοδοσία, εργατικό δίκαιο και πολλά ακόμα"
                 },
-              ].map((f, i) => (
-                <div key={i} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(91,184,196,0.2)", borderRadius: 16, padding: "18px 20px", textAlign: "left", animation: `slideUp 0.5s ease both`, animationDelay: `${i * 0.12}s` }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 10 }}>{f.icon}</svg>
+
+
+              ].map((f, i) => {
+                const iconColor = i % 2 === 0 ? "#5bb8c4" : "#E8622A";
+                const iconHtml = typeof f.icon === "string" ? f.icon : React.cloneElement(
+                  <svg>{f.icon}</svg>,
+                  {}
+                );
+                return (
+                <div key={i} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(91,184,196,0.15)", borderLeft: `3px solid ${iconColor}`, borderRadius: 16, padding: "18px 20px", textAlign: "left", animation: `slideUp 0.5s ease both`, animationDelay: `${i * 0.12}s` }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style={{ marginBottom: 10, color: iconColor }}>
+                    {React.Children.map(f.icon.props ? [f.icon] : React.Children.toArray(f.icon), child =>
+                      React.isValidElement(child) ? React.cloneElement(child, {
+                        stroke: iconColor,
+                        ...Object.fromEntries(Object.entries(child.props).filter(([k]) => k !== 'stroke'))
+                      }) : child
+                    )}
+                  </svg>
                   <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "#fff", marginBottom: 5 }}>{f.title}</div>
                   <div style={{ fontSize: "0.8rem", color: "#94a3b8", lineHeight: 1.55 }}>{f.desc}</div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Testimonials */}
@@ -1828,7 +1878,7 @@ export default function TaxIQ() {
                 </p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
                   <div style={{ height: 1, width: 36, background: "rgba(232,98,42,0.4)" }} />
-                  <span style={{ color: "#E8622A", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>εμπιστεύονται το TaxIQ</span>
+                  <span style={{ color: "#E8622A", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>εμπιστεύονται το TaxIQ AI</span>
                   <div style={{ height: 1, width: 36, background: "rgba(232,98,42,0.4)" }} />
                 </div>
               </div>
@@ -1927,7 +1977,7 @@ export default function TaxIQ() {
                     <RotatingText /><br/>
                     <span style={{ color: teal }}>Εσείς έχετε τον σωστό σύμμαχο;</span>
                   </h3>
-                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.84rem", margin: "0 0 24px", lineHeight: 1.65 }}>
+                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.84rem", margin: "0 0 24px", lineHeight: 1.65, textWrap: "balance" }}>
                     Γίνετε μέλος της κοινότητας του TaxIQ AI και αναβαθμίστε την ποιότητα των υπηρεσιών σας.
                   </p>
                   <button
