@@ -1285,9 +1285,9 @@ const RotatingBanner = () => {
   }, []);
 
   return (
-    <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.85rem)", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", minWidth: 420, maxWidth: 420 }}>
+    <span style={{ fontSize: "clamp(0.58rem, 3vw, 0.85rem)", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", width: "clamp(280px, 88vw, 420px)", overflow: "hidden" }}>
       <span style={{ fontWeight: 900, flexShrink: 0 }}>Η #<span style={{ fontSize: "1.5em", fontWeight: 900 }}>1</span> Πλατφόρμα&nbsp;</span>
-      <span style={{ transition: "opacity 0.3s ease", opacity: fade ? 1 : 0, fontWeight: 700, display: "inline-block", width: 240, textAlign: "center", whiteSpace: "nowrap" }}>
+      <span style={{ transition: "opacity 0.3s ease", opacity: fade ? 1 : 0, fontWeight: 700, display: "inline-block", width: "clamp(140px, 50vw, 240px)", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "clip" }}>
         {suffixes[index]}
       </span>
     </span>
