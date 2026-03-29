@@ -55,7 +55,13 @@ const supabase = {
       const user = localStorage.getItem("sb_user");
       return Promise.resolve({ data: { session: user ? { user: JSON.parse(user) } : null } });
     },
-    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+    signInWithOAuth: ({ provider, options }) => {
+      const redirectTo = options?.redirectTo || window.location.origin;
+      const url = `${SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${encodeURIComponent(redirectTo)}`;
+      window.location.href = url;
+      return Promise.resolve({ error: null });
+    }
   },
   from: (table) => ({
     select: (cols = "*") => ({
