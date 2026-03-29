@@ -980,7 +980,7 @@ const PricingPage = ({ onClose, user, onSignup }) => {
   const teal = "#5bb8c4";
 
   const freeFeatures = [
-    "Έως 10 ερωτήσεις",
+    "12 ερωτήσεις / μήνα",
     "Απαντήσεις με AI & Web Search",
     "Real-Time ενημέρωση νομοθεσίας",
     "Αναφορές σε νόμους & πηγές",
@@ -1357,7 +1357,7 @@ export default function TaxIQ() {
     const saved = localStorage.getItem("taxiq_free_q");
     return saved ? parseInt(saved) : 0;
   });
-  const FREE_LIMIT = 2;
+  const FREE_LIMIT = 12;
   const ADMIN_EMAIL = "dachris78@gmail.com"; // Admin panel access
   const CONTACT_EMAIL = "info@taxiq.com.gr";
   const bottomRef = useRef(null);
