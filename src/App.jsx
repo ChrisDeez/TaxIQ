@@ -642,7 +642,7 @@ const TermsModal = ({ onClose }) => {
           <Section num="4" title="Τιμολόγηση & Πλάνα Πρόσβασης">
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 8 }}>
               {[
-                { label: "Free Access:", items: ["Όριο Χρήσης: Έως 10 ερωτήματα ανά περίοδο 30 ημερών.", "Τεχνολογία: Απαντήσεις με AI & Web Search για real-time ενημέρωση νομοθεσίας.", "Τεκμηρίωση: Αναφορές σε νόμους, πηγές και δείκτης αξιοπιστίας απάντησης."] },
+                { label: "Free Access:", items: ["Όριο Χρήσης: Έως 12 ερωτήματα ανά περίοδο 30 ημερών.", "Τεχνολογία: Απαντήσεις με AI & Web Search για real-time ενημέρωση νομοθεσίας.", "Τεκμηρίωση: Αναφορές σε νόμους, πηγές και δείκτης αξιοπιστίας απάντησης."] },
                 { label: "Professional Plan:", items: ["Όριο Χρήσης: Έως 80 εξειδικευμένες αναζητήσεις ανά περίοδο 30 ημερών.", "Τεχνολογία & Τεκμηρίωση: AI & Web Search, Real-Time νομοθεσία, αναφορές και δείκτης αξιοπιστίας.", "Προτεραιότητα: Ταχύτερη επεξεργασία και προτεραιότητα απόκρισης.", "Εξειδικευμένο Περιεχόμενο: Πρόσβαση σε βιβλιοθήκη εγκυκλίων."] },
                 { label: "Business Plan:", items: ["Απεριόριστες Εξειδικευμένες Αναζητήσεις (Πολιτική Ορθής Χρήσης).", "Τεχνολογία & Τεκμηρίωση: AI & Web Search, Real-Time νομοθεσία, αναφορές και δείκτης αξιοπιστίας.", "Προτεραιότητα: Ταχύτερη επεξεργασία και προτεραιότητα απόκρισης.", "Back-office από Λογιστές Α' Τάξης: Επιστημονική υποστήριξη υψηλού επιπέδου.", "Πλήρης πρόσβαση σε βιβλιοθήκη εγκυκλίων και εξειδικευμένων φορολογικών εγγράφων.", "Dedicated Email & Direct Line για προτεραιότητα στην εξυπηρέτηση.", "Προνομιακή πρόσβαση στο κλειστό δίκτυο στρατηγικών συνεργατών.", "Αυστηρό πρωτόκολλο επαγγελματικού απορρήτου."] },
               ].map((plan, i) => (
@@ -1285,9 +1285,9 @@ const RotatingBanner = () => {
   }, []);
 
   return (
-    <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.85rem)", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", flexWrap: "nowrap", gap: "clamp(2px, 1vw, 4px)", width: "100%", textAlign: "center", whiteSpace: "nowrap" }}>
-      <span style={{ fontWeight: 900, flexShrink: 0 }}>Η #1 Πλατφόρμα AI</span>
-      <span style={{ transition: "opacity 0.3s ease", opacity: fade ? 1 : 0, fontWeight: 700, display: "inline-block", minWidth: "clamp(140px, 40vw, 220px)", textAlign: "center" }}>
+    <span style={{ fontSize: "clamp(0.65rem, 2.5vw, 0.85rem)", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", whiteSpace: "nowrap", minWidth: 420, maxWidth: 420 }}>
+      <span style={{ fontWeight: 900, flexShrink: 0 }}>Η #<span style={{ fontSize: "1.5em", fontWeight: 900 }}>1</span> Πλατφόρμα&nbsp;</span>
+      <span style={{ transition: "opacity 0.3s ease", opacity: fade ? 1 : 0, fontWeight: 700, display: "inline-block", width: 240, textAlign: "center", whiteSpace: "nowrap" }}>
         {suffixes[index]}
       </span>
     </span>
@@ -1551,8 +1551,9 @@ export default function TaxIQ() {
     const userText = text || input.trim();
     if (!userText || loading) return;
 
-    // Check free question limit (server-side by IP)
+    // Check question limit
     if (!user) {
+      // Anonymous: server-side IP check
       try {
         const limitRes = await fetch("/api/check-limit", {
           method: "POST",
@@ -1565,6 +1566,22 @@ export default function TaxIQ() {
         }
         setFreeQuestions(limitData.count);
         localStorage.setItem("taxiq_free_q", limitData.count.toString());
+      } catch (e) {
+        // Fail open on network error
+      }
+    } else {
+      // Logged-in Free user: server-side user limit
+      try {
+        const limitRes = await fetch("/api/check-user-limit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user_id: user.id }),
+        });
+        const limitData = await limitRes.json();
+        if (!limitData.allowed) {
+          setShowRegWall(true);
+          return;
+        }
       } catch (e) {
         // Fail open on network error
       }
