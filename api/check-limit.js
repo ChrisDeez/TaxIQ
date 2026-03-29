@@ -2,7 +2,7 @@ import crypto from "crypto";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-const FREE_LIMIT = 12;
+const FREE_LIMIT = 4;
 
 function hashIP(ip) {
   return crypto.createHash("sha256").update(ip + "taxiq_salt_2024").digest("hex");
@@ -17,11 +17,6 @@ function getIP(req) {
   );
 }
 
-function getCurrentMonth() {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-}
-
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -32,7 +27,6 @@ export default async function handler(req, res) {
 
   const ip = getIP(req);
   const ipHash = hashIP(ip);
-  const currentMonth = getCurrentMonth();
 
   const headers = {
     "Content-Type": "application/json",
@@ -42,14 +36,11 @@ export default async function handler(req, res) {
 
   try {
     const getRes = await fetch(
-      `${SUPABASE_URL}/rest/v1/question_limits?ip_hash=eq.${ipHash}&select=count,month`,
+      `${SUPABASE_URL}/rest/v1/question_limits?ip_hash=eq.${ipHash}&select=count`,
       { headers }
     );
     const rows = await getRes.json();
-    const record = rows?.[0];
-
-    // Reset if new month
-    const current = (record && record.month === currentMonth) ? record.count : 0;
+    const current = rows?.[0]?.count ?? 0;
 
     if (current >= FREE_LIMIT) {
       return res.status(200).json({ allowed: false, count: current, limit: FREE_LIMIT });
@@ -61,7 +52,6 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         ip_hash: ipHash,
         count: current + 1,
-        month: currentMonth,
         updated_at: new Date().toISOString(),
       }),
     });
