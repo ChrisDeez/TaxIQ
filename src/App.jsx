@@ -975,7 +975,7 @@ const CookieCustomizeModal = ({ onSave, onClose }) => {
   );
 };
 
-const PricingPage = ({ onClose, user, onSignup }) => {
+const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
   const navy = "#1a2b5e";
   const orange = "#E8622A";
   const teal = "#5bb8c4";
@@ -1093,7 +1093,7 @@ const PricingPage = ({ onClose, user, onSignup }) => {
                 </div>
               ))}
             </div>
-            <button onClick={() => handleCheckout("plus")} style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #f59e0b, #d97706)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(245,158,11,0.4)" }}>
+            <button onClick={() => onCheckout ? onCheckout("plus") : null} style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #f59e0b, #d97706)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(245,158,11,0.4)" }}>
               Αποκτήστε Πρόσβαση — €5.99/μήνα
             </button>
           </div>
@@ -1129,7 +1129,7 @@ const PricingPage = ({ onClose, user, onSignup }) => {
                 </div>
               ))}
             </div>
-            <button onClick={() => handleCheckout("professional")}
+            <button onClick={() => onCheckout ? onCheckout("professional") : null}
               style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #22c55e, #16a34a)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(34,197,94,0.4)" }}
             >
               Αποκτήστε Πρόσβαση — €9.99/μήνα
@@ -1794,7 +1794,7 @@ export default function TaxIQ() {
       </div>
 
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); }} />}
-      {showPricingPage && <PricingPage onClose={() => setShowPricingPage(false)} user={user} onSignup={() => { setShowPricingPage(false); setShowAuthModal(true); }} />}
+      {showPricingPage && <PricingPage onClose={() => setShowPricingPage(false)} user={user} onSignup={() => { setShowPricingPage(false); setShowAuthModal(true); }} onCheckout={handleCheckout} />}
       {showContact && <ContactModal onClose={() => setShowContact(false)} onPrivacy={() => { setShowContact(false); setShowPrivacy(true); }} />}
       {showAbout && <AboutModal onClose={() => setShowAbout(false)} user={user} onSignup={() => { setShowAbout(false); setShowAuthModal(true); }} />}
       {showCookiePolicy && <CookiePolicyModal onClose={() => setShowCookiePolicy(false)} />}
