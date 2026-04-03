@@ -976,6 +976,15 @@ const CookieCustomizeModal = ({ onSave, onClose }) => {
 };
 
 const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
+  const handleBuy = (plan) => {
+    if (!user) {
+      onSignup();
+      return;
+    }
+    if (onCheckout) {
+      onCheckout(plan);
+    }
+  };
   const navy = "#1a2b5e";
   const orange = "#E8622A";
   const teal = "#5bb8c4";
@@ -1093,7 +1102,7 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
                 </div>
               ))}
             </div>
-            <button onClick={(e) => { e.stopPropagation(); if(onCheckout) onCheckout("plus"); else alert("Παρακαλώ συνδεθείτε πρώτα."); }} style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #f59e0b, #d97706)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(245,158,11,0.4)" }}>
+            <button onClick={() => handleBuy("plus")} style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #f59e0b, #d97706)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(245,158,11,0.4)" }}>
               Αποκτήστε Πρόσβαση — €5.99/μήνα
             </button>
           </div>
@@ -1129,7 +1138,7 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
                 </div>
               ))}
             </div>
-            <button onClick={(e) => { e.stopPropagation(); if(onCheckout) onCheckout("professional"); else alert("Παρακαλώ συνδεθείτε πρώτα."); }}
+            <button onClick={() => handleBuy("professional")}
               style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #22c55e, #16a34a)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(34,197,94,0.4)" }}
             >
               Αποκτήστε Πρόσβαση — €9.99/μήνα
