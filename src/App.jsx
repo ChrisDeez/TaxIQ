@@ -1413,6 +1413,7 @@ export default function TaxIQ() {
   const [showCookieBanner, setShowCookieBanner] = useState(() => !localStorage.getItem("taxiq_cookie_consent"));
   const [showCookieCustomize, setShowCookieCustomize] = useState(false);
   const [user, setUser] = useState(null);
+  const [subscription, setSubscription] = useState(null);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [reviewForm, setReviewForm] = useState({ name: "", role: "", text: "", stars: 5 });
@@ -1428,6 +1429,19 @@ export default function TaxIQ() {
   const bottomRef = useRef(null);
 
   // Check session on load
+  useEffect(() => {
+    // Check if returning from Stripe payment
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("payment") === "success") {
+      window.history.replaceState({}, "", "/");
+      setTimeout(() => {
+        supabase.auth.getSession().then(({ data }) => {
+          if (data?.session?.user) fetchSubscription(data.session.user.id);
+        });
+      }, 2000);
+    }
+  }, []);
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -1476,6 +1490,23 @@ export default function TaxIQ() {
   const handleCookieReject = () => {
     localStorage.setItem("taxiq_cookie_consent", "rejected");
     setShowCookieBanner(false);
+  };
+
+  const fetchSubscription = async (userId) => {
+    try {
+      const { data } = await supabase.from("subscriptions")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("status", "active")
+        .order("created_at", { ascending: false });
+      if (data && data.length > 0) {
+        setSubscription(data[0]);
+      } else {
+        setSubscription(null);
+      }
+    } catch (e) {
+      setSubscription(null);
+    }
   };
 
   const handleCheckout = async (plan) => {
@@ -1657,12 +1688,16 @@ export default function TaxIQ() {
         // Fail open on network error
       }
     } else {
-      // Logged-in Free user: server-side user limit
+      // Logged-in user: check plan limits
+      const plan = subscription?.plan || "free";
+      const planLimits = { free: 12, plus: 30, professional: 80, business: 300 };
+      const limit = planLimits[plan] || 12;
+
       try {
         const limitRes = await fetch("/api/check-user-limit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ user_id: user.id }),
+          body: JSON.stringify({ user_id: user.id, limit }),
         });
         const limitData = await limitRes.json();
         if (!limitData.allowed) {
