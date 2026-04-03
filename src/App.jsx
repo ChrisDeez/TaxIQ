@@ -1828,11 +1828,28 @@ export default function TaxIQ() {
             <span style={{ fontSize: "clamp(0.44rem, 1.4vw, 0.57rem)", color: teal, fontWeight: 700, letterSpacing: "0.03em", overflow: "hidden", textOverflow: "ellipsis" }}>ΑΑΔΕ · ΕΦΚΑ · ΦΕΚ · ΕΡΓΑΝΗ</span>
           </div>
           {user ? (
-            <button onClick={async () => { await supabase.auth.signOut(); setUser(null); }}
-              style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              Αποσύνδεση
-            </button>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-end" }}>
+              {subscription?.stripe_customer_id && (
+                <button onClick={async () => {
+                  const res = await fetch("/api/customer-portal", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ customer_id: subscription.stripe_customer_id }),
+                  });
+                  const data = await res.json();
+                  if (data.url) window.location.href = data.url;
+                }}
+                  style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(91,184,196,0.15)", border: "1px solid rgba(91,184,196,0.4)", borderRadius: 20, padding: "5px 10px", color: teal, fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="1" y="4" width="22" height="16" rx="2" stroke={teal} strokeWidth="2"/><path d="M1 10h22" stroke={teal} strokeWidth="2"/></svg>
+                  Διαχείριση Συνδρομής
+                </button>
+              )}
+              <button onClick={async () => { await supabase.auth.signOut(); setUser(null); setSubscription(null); }}
+                style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20, padding: "5px 10px", color: "#fff", fontSize: "0.65rem", cursor: "pointer", fontFamily: "inherit", fontWeight: 600 }}>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Αποσύνδεση
+              </button>
+            </div>
           ) : null}
         </div>
       </div>
