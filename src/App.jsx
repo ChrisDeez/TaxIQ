@@ -643,6 +643,7 @@ const TermsModal = ({ onClose }) => {
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 8 }}>
               {[
                 { label: "Free Access:", items: ["Όριο Χρήσης: Έως 12 ερωτήματα ανά περίοδο 30 ημερών.", "Τεχνολογία: Απαντήσεις με AI & Web Search για real-time ενημέρωση νομοθεσίας.", "Τεκμηρίωση: Αναφορές σε νόμους, πηγές και δείκτης αξιοπιστίας απάντησης."] },
+                { label: "Plus Plan:", items: ["Όριο Χρήσης: Έως 30 ερωτήσεις ανά περίοδο 30 ημερών.", "Τεχνολογία: Απαντήσεις με AI & Web Search για real-time ενημέρωση νομοθεσίας.", "Τεκμηρίωση: Αναφορές σε νόμους, πηγές και δείκτης αξιοπιστίας απάντησης.", "Προτεραιότητα: Ταχύτερη επεξεργασία και προτεραιότητα απόκρισης."] },
                 { label: "Professional Plan:", items: ["Όριο Χρήσης: Έως 80 εξειδικευμένες αναζητήσεις ανά περίοδο 30 ημερών.", "Τεχνολογία & Τεκμηρίωση: AI & Web Search, Real-Time νομοθεσία, αναφορές και δείκτης αξιοπιστίας.", "Προτεραιότητα: Ταχύτερη επεξεργασία και προτεραιότητα απόκρισης.", "Εξειδικευμένο Περιεχόμενο: Πρόσβαση σε βιβλιοθήκη εγκυκλίων."] },
                 { label: "Business Plan:", items: ["Απεριόριστες Εξειδικευμένες Αναζητήσεις (Πολιτική Ορθής Χρήσης).", "Τεχνολογία & Τεκμηρίωση: AI & Web Search, Real-Time νομοθεσία, αναφορές και δείκτης αξιοπιστίας.", "Προτεραιότητα: Ταχύτερη επεξεργασία και προτεραιότητα απόκρισης.", "Back-office από Λογιστές Α' Τάξης: Επιστημονική υποστήριξη υψηλού επιπέδου.", "Πλήρης πρόσβαση σε βιβλιοθήκη εγκυκλίων και εξειδικευμένων φορολογικών εγγράφων.", "Dedicated Email & Direct Line για προτεραιότητα στην εξυπηρέτηση.", "Προνομιακή πρόσβαση στο κλειστό δίκτυο στρατηγικών συνεργατών.", "Αυστηρό πρωτόκολλο επαγγελματικού απορρήτου."] },
               ].map((plan, i) => (
@@ -1012,7 +1013,7 @@ const PricingPage = ({ onClose, user, onSignup }) => {
 
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 16, backdropFilter: "blur(4px)" }} onClick={onClose}>
-      <div style={{ background: "#f8fafc", borderRadius: 24, width: "100%", maxWidth: 940, boxShadow: "0 24px 64px rgba(0,0,0,0.35)", position: "relative", overflow: "hidden", maxHeight: "92vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+      <div style={{ background: "#f8fafc", borderRadius: 24, width: "100%", maxWidth: 1180, boxShadow: "0 24px 64px rgba(0,0,0,0.35)", position: "relative", overflow: "hidden", maxHeight: "92vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
 
         {/* Top accent bar */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: `linear-gradient(90deg, ${orange}, ${teal})` }} />
@@ -1023,8 +1024,8 @@ const PricingPage = ({ onClose, user, onSignup }) => {
           <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "1.4rem", cursor: "pointer", color: "#94a3b8", lineHeight: 1 }}>✕</button>
         </div>
 
-        {/* Three-column plans */}
-        <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, padding: "20px 16px 24px" }}>
+        {/* Four-column plans */}
+        <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 12, padding: "20px 14px 24px" }}>
 
           {/* FREE PLAN */}
           <div style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", border: "1.5px solid rgba(232,98,42,0.2)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
@@ -1034,12 +1035,12 @@ const PricingPage = ({ onClose, user, onSignup }) => {
                   <path d="M12 2l2.4 4.9 5.6.8-4 3.9.9 5.4L12 14.5l-4.9 2.5.9-5.4L4 7.7l5.6-.8L12 2z" stroke={orange} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(232,98,42,0.1)"/>
                 </svg>
               </div>
-              <div style={{ minHeight: 52 }}>
+              <div style={{ height: 72 }}>
                 <div style={{ fontSize: "1.15rem", fontWeight: 900, color: navy }}>Free</div>
                 <div style={{ fontSize: "0.7rem", color: "#64748b", lineHeight: 1.4 }}>Βασική ψηφιακή υποστήριξη με τη δύναμη του AI.</div>
               </div>
             </div>
-            <div style={{ minHeight: 44, display: "flex", alignItems: "baseline", gap: 4, marginBottom: 16 }}>
+            <div style={{ height: 80, display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
               <span style={{ fontSize: "2rem", fontWeight: 900, color: navy }}>€0</span>
               <span style={{ fontSize: "0.75rem", color: "#94a3b8" }}>/ μήνα</span>
             </div>
@@ -1056,22 +1057,65 @@ const PricingPage = ({ onClose, user, onSignup }) => {
             {!user && <p style={{ fontSize: "0.65rem", color: "#94a3b8", textAlign: "center", marginTop: 6, marginBottom: 0 }}>Δεν απαιτείται πιστωτική κάρτα</p>}
           </div>
 
+          {/* PLUS PLAN */}
+          <div style={{ background: `linear-gradient(160deg, #0a4a52 0%, #0d6b7a 100%)`, borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 20px rgba(13,107,122,0.35)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+            <div style={{ position: "absolute", top: 14, right: 14, background: "#f59e0b", borderRadius: 20, padding: "3px 10px", fontSize: "0.6rem", fontWeight: 700, color: "#fff", letterSpacing: "0.08em" }}>ΣΎΝΤΟΜΑ</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(245,158,11,0.2)", border: "1.5px solid rgba(34,197,94,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="7" r="4" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(245,158,11,0.15)"/>
+                </svg>
+              </div>
+              <div style={{ height: 72 }}>
+                <div style={{ fontSize: "1.15rem", fontWeight: 900, color: "#fff" }}>Plus</div>
+                <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>Ο ιδανικός συνεργάτης για ιδιώτες και νέους επαγγελματίες.</div>
+              </div>
+            </div>
+            <div style={{ height: 80, display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
+              <span style={{ fontSize: "1.4rem", fontWeight: 900, color: "#f59e0b" }}>Σύντομα Διαθέσιμο</span>
+            </div>
+            <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 16 }} />
+            <div style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: 22 }}>
+              {[
+                "30 ερωτήσεις / μήνα",
+                "Απαντήσεις με AI & Web Search",
+                "Real-Time ενημέρωση νομοθεσίας",
+                "Αναφορές σε νόμους & πηγές",
+                "Δείκτης αξιοπιστίας απάντησης",
+                "Προτεραιότητα στις απαντήσεις",
+              ].map((f, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 9 }}>
+                  <div style={{ width: 18, height: 18, borderRadius: "50%", background: "rgba(245,158,11,0.2)", border: "1.5px solid #f59e0b", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
+                  <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.82rem", fontWeight: 500 }}>{f}</span>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => handleCheckout("plus")} style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #f59e0b, #d97706)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(245,158,11,0.4)" }}>
+              Αποκτήστε Πρόσβαση — €5.99/μήνα
+            </button>
+          </div>
+
           {/* PROFESSIONAL PLAN */}
           <div style={{ background: `linear-gradient(160deg, ${navy} 0%, #1e3a7a 100%)`, borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 20px rgba(26,43,94,0.3)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
             {/* Badge */}
             <div style={{ position: "absolute", top: 14, right: 14, background: teal, borderRadius: 20, padding: "3px 10px", fontSize: "0.6rem", fontWeight: 700, color: "#fff", letterSpacing: "0.08em" }}>ΣΎΝΤΟΜΑ</div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(91,184,196,0.15)", border: `1.5px solid ${teal}40`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(34,197,94,0.15)", border: `1.5px solid $"#22c55e"40`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke={teal} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(91,184,196,0.1)"/>
+                  <rect x="2" y="7" width="20" height="14" rx="2" stroke={teal} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(91,184,196,0.1)"/>
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke={teal} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  <line x1="2" y1="14" x2="22" y2="14" stroke={teal} strokeWidth="1.8" strokeLinecap="round"/>
                 </svg>
               </div>
-              <div style={{ minHeight: 52 }}>
+              <div style={{ height: 72 }}>
                 <div style={{ fontSize: "1.15rem", fontWeight: 900, color: "#fff" }}>Professional</div>
                 <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>Ολοκληρωμένη υποστήριξη για Επιχειρήσεις και απαιτητικούς χρήστες.</div>
               </div>
             </div>
-            <div style={{ minHeight: 44, display: "flex", alignItems: "baseline", gap: 4, marginBottom: 16 }}>
+            <div style={{ height: 80, display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
               <span style={{ fontSize: "1.4rem", fontWeight: 900, color: teal }}>Σύντομα Διαθέσιμο</span>
             </div>
             <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 16 }} />
@@ -1085,13 +1129,11 @@ const PricingPage = ({ onClose, user, onSignup }) => {
                 </div>
               ))}
             </div>
-            <button
-              onClick={() => { onClose(); }}
-              style={{ width: "100%", padding: "12px", background: `rgba(91,184,196,0.15)`, border: `1.5px solid ${teal}`, borderRadius: 12, color: teal, fontSize: "0.9rem", fontWeight: 700, cursor: "not-allowed", fontFamily: "inherit", transition: "all 0.2s", opacity: 0.8 }}
+            <button onClick={() => handleCheckout("professional")}
+              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #22c55e, #16a34a)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(34,197,94,0.4)" }}
             >
-              Αποκτήστε Πρόσβαση
+              Αποκτήστε Πρόσβαση — €9.99/μήνα
             </button>
-            <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.35)", textAlign: "center", marginTop: 6, marginBottom: 0 }}>Σύντομα διαθέσιμο</p>
           </div>
 
           {/* BUSINESS PLAN */}
@@ -1101,16 +1143,20 @@ const PricingPage = ({ onClose, user, onSignup }) => {
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
               <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(232,98,42,0.15)", border: "1.5px solid rgba(232,98,42,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke={orange} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(232,98,42,0.1)"/>
-                  <path d="M9 22V12h6v10" stroke={orange} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="12" r="3" stroke={orange} strokeWidth="1.8" fill="rgba(232,98,42,0.15)"/>
+                  <circle cx="4" cy="6" r="2" stroke={orange} strokeWidth="1.6" fill="rgba(232,98,42,0.1)"/>
+                  <circle cx="20" cy="6" r="2" stroke={orange} strokeWidth="1.6" fill="rgba(232,98,42,0.1)"/>
+                  <circle cx="4" cy="18" r="2" stroke={orange} strokeWidth="1.6" fill="rgba(232,98,42,0.1)"/>
+                  <circle cx="20" cy="18" r="2" stroke={orange} strokeWidth="1.6" fill="rgba(232,98,42,0.1)"/>
+                  <path d="M6 7l4.5 4M18 7l-4.5 4M6 17l4.5-4M18 17l-4.5-4" stroke={orange} strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </div>
-              <div style={{ minHeight: 52 }}>
+              <div style={{ height: 72 }}>
                 <div style={{ fontSize: "1.15rem", fontWeight: 900, color: "#fff" }}>Business</div>
                 <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>Εξειδικευμένη B2B υποστήριξη υψηλού επιπέδου με αυστηρό πρωτόκολλο επαγγελματικού απορρήτου.</div>
               </div>
             </div>
-            <div style={{ minHeight: 44, display: "flex", alignItems: "baseline", gap: 4, marginBottom: 16 }}>
+            <div style={{ height: 80, display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
               <span style={{ fontSize: "1rem", fontWeight: 800, color: orange }}>Κατόπιν Συνεννόησης</span>
             </div>
             <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 16 }} />
@@ -1122,7 +1168,7 @@ const PricingPage = ({ onClose, user, onSignup }) => {
                 "Αναφορές σε νόμους & πηγές",
                 "Δείκτης αξιοπιστίας απάντησης",
                 "Προτεραιότητα στις απαντήσεις",
-                "Βιβλιοθήκη εξειδικευμένων εγκυκλίων",
+                "Πλήρης πρόσβαση σε εξειδικευμένη βιβλιοθήκη εγκυκλίων",
                 "Back-office από Λογιστές Α' Τάξης",
                 "Dedicated Email & Direct Line",
                 "Πρόσβαση στο δίκτυο συνεργατών TaxIQ",
@@ -1160,6 +1206,7 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true); setError(""); setMessage("");
@@ -1211,9 +1258,18 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
           placeholder="Email" type="email"
           style={{ width: "100%", padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, marginBottom: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
         {mode !== "reset" && (
-          <input value={password} onChange={e => setPassword(e.target.value)}
-            placeholder="Κωδικός" type="password"
-            style={{ width: "100%", padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, marginBottom: 16, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
+          <div style={{ position: "relative", marginBottom: 16 }}>
+            <input value={password} onChange={e => setPassword(e.target.value)}
+              placeholder="Κωδικός" type={showPassword ? "text" : "password"}
+              style={{ width: "100%", padding: "10px 40px 10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
+            <button onClick={() => setShowPassword(p => !p)}
+              style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 0, display: "flex", alignItems: "center" }}>
+              {showPassword
+                ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/><line x1="1" y1="1" x2="23" y2="23" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/></svg>
+                : <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="3" stroke="#94a3b8" strokeWidth="2"/></svg>
+              }
+            </button>
+          </div>
         )}
         {error && <p style={{ color: "#ef4444", fontSize: "0.8rem", marginBottom: 10 }}>{error}</p>}
         {message && <p style={{ color: "#22c55e", fontSize: "0.8rem", marginBottom: 10 }}>{message}</p>}
@@ -1411,6 +1467,28 @@ export default function TaxIQ() {
   const handleCookieReject = () => {
     localStorage.setItem("taxiq_cookie_consent", "rejected");
     setShowCookieBanner(false);
+  };
+
+  const handleCheckout = async (plan) => {
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
+    try {
+      const res = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan, user_id: user.id, email: user.email }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Σφάλμα κατά την ανακατεύθυνση στο Stripe.");
+      }
+    } catch (e) {
+      alert("Σφάλμα σύνδεσης.");
+    }
   };
 
   const handleCookieSave = (prefs) => {
