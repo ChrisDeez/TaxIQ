@@ -1236,6 +1236,9 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [lastName, setLastName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [notRobot, setNotRobot] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true); setError(""); setMessage("");
@@ -1245,9 +1248,17 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
         if (error) throw error;
         onAuthSuccess(data.user);
       } else if (mode === "signup") {
+        if (!fullName.trim()) throw { message: "Παρακαλώ εισάγετε το όνομά σας." };
+        if (!lastName.trim()) throw { message: "Παρακαλώ εισάγετε το επώνυμό σας." };
+        if (!email.trim()) throw { message: "Παρακαλώ εισάγετε το email σας." };
+        if (!password) throw { message: "Παρακαλώ εισάγετε κωδικό πρόσβασης." };
+        if (password.length < 6) throw { message: "Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες." };
+        if (!confirmPassword) throw { message: "Παρακαλώ επιβεβαιώστε τον κωδικό σας." };
+        if (password !== confirmPassword) throw { message: "Οι κωδικοί δεν ταιριάζουν." };
+        if (!notRobot) throw { message: "Παρακαλώ επιβεβαιώστε ότι δεν είστε ρομπότ." };
         const { data, error } = await supabase.auth.signUp({
           email, password,
-          options: { data: { full_name: fullName } }
+          options: { data: { full_name: `${fullName} ${lastName}` } }
         });
         if (error) throw error;
         // Notify admin
@@ -1279,9 +1290,16 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
           <button onClick={onClose} style={{ background: "none", border: "none", fontSize: "1.4rem", cursor: "pointer", color: "#94a3b8" }}>✕</button>
         </div>
         {mode === "signup" && (
-          <input value={fullName} onChange={e => setFullName(e.target.value)}
-            placeholder="Ονοματεπώνυμο"
-            style={{ width: "100%", padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, marginBottom: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
+          <>
+            <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
+              <input value={fullName} onChange={e => setFullName(e.target.value)}
+                placeholder="Όνομα *"
+                style={{ flex: 1, padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
+              <input value={lastName} onChange={e => setLastName(e.target.value)}
+                placeholder="Επώνυμο *"
+                style={{ flex: 1, padding: "10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
+            </div>
+          </>
         )}
         <input value={email} onChange={e => setEmail(e.target.value)}
           placeholder="Email" type="email"
@@ -1289,7 +1307,7 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
         {mode !== "reset" && (
           <div style={{ position: "relative", marginBottom: 16 }}>
             <input value={password} onChange={e => setPassword(e.target.value)}
-              placeholder="Κωδικός" type={showPassword ? "text" : "password"}
+              placeholder="Κωδικός (τουλάχιστον 6 χαρακτήρες)" type={showPassword ? "text" : "password"}
               style={{ width: "100%", padding: "10px 40px 10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
             <button onClick={() => setShowPassword(p => !p)}
               style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 0, display: "flex", alignItems: "center" }}>
@@ -1299,6 +1317,30 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
               }
             </button>
           </div>
+        )}
+        {mode === "signup" && (
+          <>
+            <div style={{ position: "relative", marginBottom: 10 }}>
+              <input value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}
+                placeholder="Επιβεβαίωση Κωδικού *" type={showPassword ? "text" : "password"}
+                style={{ width: "100%", padding: "10px 40px 10px 14px", border: "1px solid #e2e8f0", borderRadius: 10, fontSize: "0.9rem", boxSizing: "border-box", color: navy }} />
+              <button onClick={() => setShowPassword(p => !p)}
+                style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 0, display: "flex", alignItems: "center" }}>
+                {showPassword
+                  ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/><line x1="1" y1="1" x2="23" y2="23" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/></svg>
+                  : <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="3" stroke="#94a3b8" strokeWidth="2"/></svg>
+                }
+              </button>
+            </div>
+            <div onClick={() => setNotRobot(p => !p)}
+              style={{ display: "flex", alignItems: "center", gap: 10, background: "#f8fafc", border: `2px solid ${notRobot ? orange : "#e2e8f0"}`, borderRadius: 10, padding: "12px 14px", cursor: "pointer", marginBottom: 14, transition: "border-color 0.2s" }}>
+              <div style={{ width: 22, height: 22, borderRadius: 4, border: `2px solid ${notRobot ? orange : "#94a3b8"}`, background: notRobot ? orange : "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.2s" }}>
+                {notRobot && <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+              </div>
+              <span style={{ fontSize: "0.85rem", color: navy, fontWeight: 500 }}>Δεν είμαι ρομπότ</span>
+              <span style={{ marginLeft: "auto", fontSize: "1.2rem" }}>🤖</span>
+            </div>
+          </>
         )}
         {error && <p style={{ color: "#ef4444", fontSize: "0.8rem", marginBottom: 10 }}>{error}</p>}
         {message && <p style={{ color: "#22c55e", fontSize: "0.8rem", marginBottom: 10 }}>{message}</p>}
@@ -1859,6 +1901,9 @@ export default function TaxIQ() {
           </div>
           {user ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 4, alignItems: "flex-end" }}>
+              <div style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.6)", fontWeight: 600, letterSpacing: "0.02em" }}>
+                👤 {user.user_metadata?.full_name || user.email?.split("@")[0] || "Χρήστης"}
+              </div>
               {subscription?.stripe_customer_id && (
                 <button onClick={async () => {
                   const res = await fetch("/api/customer-portal", {
