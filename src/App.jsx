@@ -61,6 +61,26 @@ const supabase = {
       const url = `${SUPABASE_URL}/auth/v1/authorize?provider=${provider}&redirect_to=${encodeURIComponent(redirectTo)}`;
       window.location.href = url;
       return Promise.resolve({ error: null });
+    },
+    handleOAuthCallback: async () => {
+      // Parse hash or query params after OAuth redirect
+      const hash = window.location.hash;
+      const params = new URLSearchParams(hash.replace('#', ''));
+      const accessToken = params.get('access_token');
+      const refreshToken = params.get('refresh_token');
+      if (accessToken) {
+        // Get user info from token
+        const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+          headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${accessToken}` }
+        });
+        const user = await res.json();
+        localStorage.setItem("sb_token", accessToken);
+        if (refreshToken) localStorage.setItem("sb_refresh_token", refreshToken);
+        localStorage.setItem("sb_user", JSON.stringify(user));
+        window.history.replaceState({}, document.title, window.location.pathname);
+        return { user };
+      }
+      return { user: null };
     }
   },
   from: (table) => ({
@@ -1439,6 +1459,16 @@ export default function TaxIQ() {
           if (data?.session?.user) fetchSubscription(data.session.user.id);
         });
       }, 2000);
+    }
+
+    // Handle OAuth callback (Google login redirect)
+    if (window.location.hash.includes("access_token")) {
+      supabase.auth.handleOAuthCallback().then(({ user }) => {
+        if (user) {
+          setUser(user);
+          fetchSubscription(user.id);
+        }
+      });
     }
   }, []);
 
