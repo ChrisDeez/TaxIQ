@@ -1088,7 +1088,6 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
 
           {/* PLUS PLAN */}
           <div style={{ background: `linear-gradient(160deg, #0a4a52 0%, #0d6b7a 100%)`, borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 20px rgba(13,107,122,0.35)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
-            <div style={{ position: "absolute", top: 14, right: 14, background: "#f59e0b", borderRadius: 20, padding: "3px 10px", fontSize: "0.6rem", fontWeight: 700, color: "#fff", letterSpacing: "0.08em" }}>ΣΎΝΤΟΜΑ</div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
               <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(245,158,11,0.2)", border: "1.5px solid rgba(34,197,94,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -1102,7 +1101,8 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
               </div>
             </div>
             <div style={{ height: 80, display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
-              <span style={{ fontSize: "1.4rem", fontWeight: 900, color: "#f59e0b" }}>Σύντομα Διαθέσιμο</span>
+              <span style={{ fontSize: "2rem", fontWeight: 900, color: "#f59e0b" }}>€5.99</span>
+              <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.5)" }}>/ μήνα</span>
             </div>
             <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 16 }} />
             <div style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: 22 }}>
@@ -1123,16 +1123,17 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
               ))}
             </div>
             <button onClick={() => handleBuy("plus")} style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #f59e0b, #d97706)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(245,158,11,0.4)" }}>
-              Αποκτήστε Πρόσβαση — €5.99/μήνα
+              Αποκτήστε Πρόσβαση
             </button>
           </div>
 
           {/* PROFESSIONAL PLAN */}
-          <div style={{ background: `linear-gradient(160deg, ${navy} 0%, #1e3a7a 100%)`, borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 20px rgba(26,43,94,0.3)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ position: "relative", padding: 2, borderRadius: 20, background: "linear-gradient(135deg, #00ff88, #00cc6a, #00ff88)", boxShadow: "0 8px 40px rgba(0,255,136,0.45)", transform: "scale(1.04)", zIndex: 2 }}>
+          <div style={{ background: `linear-gradient(160deg, ${navy} 0%, #1e3a7a 100%)`, borderRadius: 18, padding: "34px 20px 22px", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+            <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg, #00ff88, #00cc6a)", borderRadius: "0 0 14px 14px", padding: "5px 18px", fontSize: "0.6rem", fontWeight: 800, color: "#003320", letterSpacing: "0.1em", whiteSpace: "nowrap" }}>ΔΗΜΟΦΙΛΕΣΤΕΡΟ</div>
             {/* Badge */}
-            <div style={{ position: "absolute", top: 14, right: 14, background: teal, borderRadius: 20, padding: "3px 10px", fontSize: "0.6rem", fontWeight: 700, color: "#fff", letterSpacing: "0.08em" }}>ΣΎΝΤΟΜΑ</div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(34,197,94,0.15)", border: `1.5px solid $"#22c55e"40`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(34,197,94,0.15)", border: `1.5px solid ${teal}40`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <rect x="2" y="7" width="20" height="14" rx="2" stroke={teal} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="rgba(91,184,196,0.1)"/>
                   <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke={teal} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1145,7 +1146,8 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
               </div>
             </div>
             <div style={{ height: 80, display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
-              <span style={{ fontSize: "1.4rem", fontWeight: 900, color: teal }}>Σύντομα Διαθέσιμο</span>
+              <span style={{ fontSize: "2rem", fontWeight: 900, color: teal }}>€9.99</span>
+              <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.5)" }}>/ μήνα</span>
             </div>
             <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 16 }} />
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 22 }}>
@@ -1159,10 +1161,11 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
               ))}
             </div>
             <button onClick={() => handleBuy("professional")}
-              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #22c55e, #16a34a)", border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(34,197,94,0.4)" }}
+              style={{ width: "100%", padding: "12px", background: `linear-gradient(135deg, ${teal}, #3a9aaa)`, border: "none", borderRadius: 12, color: "#fff", fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: "0 4px 14px rgba(91,184,196,0.4)" }}
             >
-              Αποκτήστε Πρόσβαση — €9.99/μήνα
+              Αποκτήστε Πρόσβαση
             </button>
+          </div>
           </div>
 
           {/* BUSINESS PLAN */}
@@ -1227,7 +1230,7 @@ const PricingPage = ({ onClose, user, onSignup, onCheckout }) => {
   );
 };
 
-const AuthModal = ({ onClose, onAuthSuccess }) => {
+const AuthModal = ({ onClose, onAuthSuccess, onShowPricing }) => {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -1267,8 +1270,14 @@ const AuthModal = ({ onClose, onAuthSuccess }) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, type: "signup", notifyEmails: ["info@taxiq.com.gr", "dachris78@gmail.com"] })
         }).catch(() => {});
-        setMessage("✅ Σας στάλθηκε email επιβεβαίωσης! Ελέγξτε τα εισερχόμενά σας και πατήστε τον σύνδεσμο για να ενεργοποιήσετε τον λογαριασμό σας.");
-        setMode("login");
+        // If user is immediately logged in (no email confirmation), show pricing
+        if (data?.user) {
+          onAuthSuccess(data.user);
+          onShowPricing && onShowPricing();
+        } else {
+          setMessage("✅ Σας στάλθηκε email επιβεβαίωσης! Ελέγξτε τα εισερχόμενά σας και πατήστε τον σύνδεσμο για να ενεργοποιήσετε τον λογαριασμό σας.");
+          setMode("login");
+        }
       } else {
         const { error } = await supabase.auth.resetPasswordForEmail(email);
         if (error) throw error;
