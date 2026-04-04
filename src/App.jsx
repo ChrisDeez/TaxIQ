@@ -1938,7 +1938,7 @@ export default function TaxIQ() {
         </div>
       </div>
 
-      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); }} />}
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); fetchSubscription(u.id); }} onShowPricing={() => { setShowAuthModal(false); setShowPricingPage(true); }} />}
       {showPricingPage && <PricingPage onClose={() => setShowPricingPage(false)} user={user} onSignup={() => { setShowPricingPage(false); setShowAuthModal(true); }} onCheckout={handleCheckout} />}
       {showContact && <ContactModal onClose={() => setShowContact(false)} onPrivacy={() => { setShowContact(false); setShowPrivacy(true); }} />}
       {showAbout && <AboutModal onClose={() => setShowAbout(false)} user={user} onSignup={() => { setShowAbout(false); setShowAuthModal(true); }} />}
