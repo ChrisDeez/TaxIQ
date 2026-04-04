@@ -1270,14 +1270,9 @@ const AuthModal = ({ onClose, onAuthSuccess, onShowPricing }) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, type: "signup", notifyEmails: ["info@taxiq.com.gr", "dachris78@gmail.com"] })
         }).catch(() => {});
-        // If user is immediately logged in (no email confirmation), show pricing
-        if (data?.user) {
-          onAuthSuccess(data.user);
-          onShowPricing && onShowPricing();
-        } else {
-          setMessage("✅ Σας στάλθηκε email επιβεβαίωσης! Ελέγξτε τα εισερχόμενά σας και πατήστε τον σύνδεσμο για να ενεργοποιήσετε τον λογαριασμό σας.");
-          setMode("login");
-        }
+        // Show pricing after signup regardless of email confirmation
+        setMessage("");
+        onShowPricing && onShowPricing();
       } else {
         const { error } = await supabase.auth.resetPasswordForEmail(email);
         if (error) throw error;
