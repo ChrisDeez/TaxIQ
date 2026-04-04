@@ -1495,6 +1495,23 @@ export default function TaxIQ() {
   const bottomRef = useRef(null);
 
   // Check session on load
+  const fetchSubscription = async (userId) => {
+    try {
+      const { data } = await supabase.from("subscriptions")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("status", "active")
+        .order("created_at", { ascending: false });
+      if (data && data.length > 0) {
+        setSubscription(data[0]);
+      } else {
+        setSubscription(null);
+      }
+    } catch (e) {
+      setSubscription(null);
+    }
+  };
+
   useEffect(() => {
     // Check if returning from Stripe payment
     const params = new URLSearchParams(window.location.search);
@@ -1566,23 +1583,6 @@ export default function TaxIQ() {
   const handleCookieReject = () => {
     localStorage.setItem("taxiq_cookie_consent", "rejected");
     setShowCookieBanner(false);
-  };
-
-  const fetchSubscription = async (userId) => {
-    try {
-      const { data } = await supabase.from("subscriptions")
-        .select("*")
-        .eq("user_id", userId)
-        .eq("status", "active")
-        .order("created_at", { ascending: false });
-      if (data && data.length > 0) {
-        setSubscription(data[0]);
-      } else {
-        setSubscription(null);
-      }
-    } catch (e) {
-      setSubscription(null);
-    }
   };
 
   const handleCheckout = async (plan) => {
