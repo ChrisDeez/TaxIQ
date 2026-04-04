@@ -1495,7 +1495,7 @@ export default function TaxIQ() {
   const bottomRef = useRef(null);
 
   // Check session on load
-  const fetchSubscription = async (userId) => {
+  const fetchSubscription = async (userId, showPricingIfNew = false) => {
     try {
       const { data } = await supabase.from("subscriptions")
         .select("*")
@@ -1506,6 +1506,7 @@ export default function TaxIQ() {
         setSubscription(data[0]);
       } else {
         setSubscription(null);
+        if (showPricingIfNew) setShowPricingPage(true);
       }
     } catch (e) {
       setSubscription(null);
@@ -1933,7 +1934,7 @@ export default function TaxIQ() {
         </div>
       </div>
 
-      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); fetchSubscription(u.id); }} onShowPricing={() => { setShowAuthModal(false); setShowPricingPage(true); }} />}
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={(u) => { setUser(u); setShowAuthModal(false); fetchSubscription(u.id, true); }} onShowPricing={() => { setShowAuthModal(false); setShowPricingPage(true); }} />}
       {showPricingPage && <PricingPage onClose={() => setShowPricingPage(false)} user={user} onSignup={() => { setShowPricingPage(false); setShowAuthModal(true); }} onCheckout={handleCheckout} />}
       {showContact && <ContactModal onClose={() => setShowContact(false)} onPrivacy={() => { setShowContact(false); setShowPrivacy(true); }} />}
       {showAbout && <AboutModal onClose={() => setShowAbout(false)} user={user} onSignup={() => { setShowAbout(false); setShowAuthModal(true); }} />}
