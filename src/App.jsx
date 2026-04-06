@@ -1506,7 +1506,10 @@ export default function TaxIQ() {
         setSubscription(data[0]);
       } else {
         setSubscription(null);
-        if (showPricingIfNew) setShowPricingPage(true);
+        // Don't show pricing if user is in the middle of a checkout
+        const params = new URLSearchParams(window.location.search);
+        const isCheckout = params.get("payment") || window.location.href.includes("stripe");
+        if (showPricingIfNew && !isCheckout) setShowPricingPage(true);
       }
     } catch (e) {
       setSubscription(null);
