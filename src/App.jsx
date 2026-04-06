@@ -1538,10 +1538,18 @@ export default function TaxIQ() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
+      if (session?.user) {
+        setUser(session.user);
+        fetchSubscription(session.user.id, true);
+      }
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+      if (session?.user) {
+        setUser(session.user);
+        fetchSubscription(session.user.id, true);
+      } else {
+        setUser(null);
+      }
     });
     return () => subscription.unsubscribe();
   }, []);
